@@ -413,6 +413,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ClosestEnemy: {fileID: 0}
   EnemyContact: 0
+  Bullet: {fileID: 3065373136677304028, guid: aac44726bcb8f3f478ba5ebe8d6b4241, type: 3}
 --- !u!1 &1674368248
 GameObject:
   m_ObjectHideFlags: 0

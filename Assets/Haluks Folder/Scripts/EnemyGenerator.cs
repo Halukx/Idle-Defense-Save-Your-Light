@@ -12,19 +12,25 @@ public class EnemyGenerator : MonoBehaviour
 
     private void Start()
     {
-        InvokeRepeating("EnemySpawner",1,2f);
+        EnemySpawner();
+        InvokeRepeating("Spawn", 1,2f);
     }
 
     void EnemySpawner()
     {
-        for (int i = 1; i < 90; i++)
+        for (int i = 0; i < 90; i++)
         {
             float a = i * Mathf.PI * 2f / 90;
             Vector2 spawnPoint = new Vector2(Mathf.Sin(a) * widthScale, Mathf.Cos(a) * heightScale);
             spawnPoints.Add(spawnPoint);
         }
-        Instantiate(Enemy1, spawnPoints[Random.Range(0, 91)], Quaternion.identity);
+        
     }
+    void Spawn()
+    {
+        Instantiate(Enemy1, spawnPoints[Random.Range(1,88)], Quaternion.identity);
+    }
+    
     
 }
 

@@ -22,4 +22,5 @@ public class Enemy1 : MonoBehaviour
         
         transform.position = Vector2.MoveTowards(transform.position,target.transform.position,2f*Time.deltaTime);
     }
+
 }

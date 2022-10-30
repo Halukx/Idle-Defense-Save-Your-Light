@@ -5,59 +5,60 @@ using UnityEngine;
 public class EnemyRadar : MonoBehaviour
 {
     private GameObject[] MultipleEnemies;
-    public Transform ClosestEnemy;
-    public bool EnemyContact;
+    public static Transform ClosestEnemy;
+
+    
+    [SerializeField] public GameObject Bullet;
 
 
     private void Start()
     {
         ClosestEnemy = null;
-        EnemyContact = false;
+
     }
 
     private void Update()
     {
+        Debug.Log(GetClosestEnemy());
         
     }
 
     private void Attack()
     {
-        if (EnemyContact)
-        {
-            
-        }
+
+            var newBullet = Instantiate(Bullet, new Vector3(0, 0, 0), Quaternion.identity);
+            newBullet.transform.parent = null;
+
     }
+
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.isTrigger =! true && collision.CompareTag("Enemy"))
+        Debug.Log("giriyor");
+        if ( collision.CompareTag("Enemy"))
         {
-            if (ClosestEnemy != null)
-            {
-                ClosestEnemy.gameObject.GetComponent<SpriteRenderer>().material.color = Color.white;
-            }
+            
             ClosestEnemy = GetClosestEnemy();
-            ClosestEnemy.gameObject.GetComponent<SpriteRenderer>().material.color = new Color(1, 0.7f, 0, 1);
-            EnemyContact = true;
+
+            Debug.Log("sadsad");
+            
         }
+
     }
-    private void OnTriggerExit2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.isTrigger = !true && collision.CompareTag("Enemy"))
+        if (collision.gameObject.tag=="Enemy")
         {
-            EnemyContact = false;
-            ClosestEnemy.gameObject.GetComponent<SpriteRenderer>().material.color = Color.white;
+            Invoke("Attack", 0.01f);
         }
+
     }
 
 
-    private void OnDestroy()
-    {
-        if (ClosestEnemy != null)
-        {
-            ClosestEnemy.gameObject.GetComponent<SpriteRenderer>().material.color = Color.white;
-        }
-    }
+
+
+
+
 
     public Transform GetClosestEnemy()
     {
