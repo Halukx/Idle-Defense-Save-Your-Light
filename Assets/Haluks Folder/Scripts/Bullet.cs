@@ -1,27 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditorInternal;
 using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-
-
-    void Update()
+    Rigidbody2D rb;
+    private void Start()
     {
-        if (EnemyRadar.ClosestEnemy != null)
+        if (EnemyRadar.ClosestEnemy!=null)
         {
-            transform.position = Vector2.MoveTowards(transform.position, EnemyRadar.ClosestEnemy.transform.position, 2f * Time.deltaTime);
-
-        }
-    }
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject.tag == "Enemy")
-        {
-            Destroy(gameObject);
-            Destroy(collision.gameObject);
-            EnemyRadar.ClosestEnemy = null;
-            Debug.Log("Destroy gameobject bullte");
+            rb = GetComponent<Rigidbody2D>();
+            rb.velocity = (EnemyRadar.ClosestEnemy.transform.position - transform.position).normalized*2f;
         }
     }
 }

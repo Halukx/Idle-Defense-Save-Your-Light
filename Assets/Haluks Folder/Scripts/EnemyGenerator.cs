@@ -13,7 +13,7 @@ public class EnemyGenerator : MonoBehaviour
     private void Start()
     {
         EnemySpawner();
-        InvokeRepeating("Spawn", 1,2f);
+        InvokeRepeating("Spawn", 1,SpawnRate.spawnRate);
     }
 
     void EnemySpawner()

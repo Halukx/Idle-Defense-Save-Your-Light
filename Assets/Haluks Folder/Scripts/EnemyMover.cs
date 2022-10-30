@@ -5,9 +5,13 @@ using static UnityEngine.GraphicsBuffer;
 
 public class EnemyMover : Enemy1
 {
-    void EnemyMovement()
+    public GameObject target;
+    private void Update()
     {
-
-        transform.position = Vector2.MoveTowards(transform.position, target.transform.position, 2f * Time.deltaTime);
+        EnemyMovement();
+    }
+    public void EnemyMovement()
+    {
+        transform.position = Vector2.MoveTowards(transform.position, target.transform.position, 1f * Time.deltaTime);
     }
 }

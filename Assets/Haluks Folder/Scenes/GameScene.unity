@@ -296,6 +296,24 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 678396918201751343, guid: 20bc6ea4e528e5847942d75f63007bd6, type: 3}
   m_PrefabInstance: {fileID: 678396918708479050}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &861695063 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 678396918201751337, guid: 20bc6ea4e528e5847942d75f63007bd6, type: 3}
+  m_PrefabInstance: {fileID: 678396918708479050}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &861695065
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 861695063}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9fd65d8cbadd35c4285a604db9553dbc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _damage: 7
 --- !u!1 &876134803
 GameObject:
   m_ObjectHideFlags: 0
@@ -411,8 +429,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51ffd87e5ea0304459710d4566af8118, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ClosestEnemy: {fileID: 0}
-  EnemyContact: 0
+  EnemyHealths: []
+  ShootSpeed: 1
+  damage: {fileID: 861695065}
   Bullet: {fileID: 3065373136677304028, guid: aac44726bcb8f3f478ba5ebe8d6b4241, type: 3}
 --- !u!1 &1674368248
 GameObject:
