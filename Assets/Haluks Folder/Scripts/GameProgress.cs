@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class GameProgress : MonoBehaviour
 {
@@ -10,8 +11,13 @@ public class GameProgress : MonoBehaviour
     public static float waveToNextLevel=10;
     public static int waveCounter=1;
     public static int levelCounter=1;
+    [SerializeField] public TextMeshProUGUI levelCounterText;
 
-
+    private void Start()
+    {
+        //levelCounterText=GetComponent<TextMeshProUGUI>();
+        levelCounterText.text = levelCounter.ToString();
+    }
     private void Update()
     {
         Debug.Log("wave counter:" + waveCounter);
@@ -22,10 +28,11 @@ public class GameProgress : MonoBehaviour
             killToNextWaveIncreaser();
             waveCounter++;
         }
-        if (waveCounter==waveToNextLevel)
+        if (waveCounter>=waveToNextLevel)
         {
             waveToNextLevelIncreaser();
             levelCounter++;
+            levelCounterText.text = levelCounter.ToString();
         }
     }
 
@@ -39,6 +46,9 @@ public class GameProgress : MonoBehaviour
     public void waveToNextLevelIncreaser()
     {
         waveToNextLevel += 0.34f;
-        levelCounter++;
+        killCounter = 0;
+        waveCounter = 0;
+
+
     }
 }

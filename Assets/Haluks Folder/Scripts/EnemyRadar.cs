@@ -10,11 +10,13 @@ public class EnemyRadar : MonoBehaviour
     public static Health ClosestEnemy;
     public List<Health> EnemyHealths=new List<Health>();
 
-    public float ShootSpeed = 2f;
-    private float ShootCooldown=0F;
-    
 
     
+    private float startSpeed=0.5f;
+    private float ShootCooldown;
+
+
+
 
     public static EnemyRadar enemyRadar;
     
@@ -28,22 +30,22 @@ public class EnemyRadar : MonoBehaviour
     private void Start()
     {
         ClosestEnemy = null;
+        ShootCooldown = startSpeed;
     }
 
     private void Update()
     {
-        if (EnemyHealths.Count > 0 && GetClosestEnemy() != null)
-        {
-            ClosestEnemy = GetClosestEnemy();
-        }
-        ShootCooldown += Time.deltaTime;
+        
+        ShootCooldown -= Time.deltaTime;
+        
     }
-    
+
     private void Attack()
     {
         if (ClosestEnemy.HP<=0)
         {
             EnemyHealths.Remove(ClosestEnemy);
+            ClosestEnemy = null;
         }
         else
         {
@@ -57,13 +59,27 @@ public class EnemyRadar : MonoBehaviour
     {
         if (collision.gameObject.tag=="Enemy")
         {
-            if (ShootCooldown>=ShootSpeed)
+            if (EnemyHealths.Count > 0 && GetClosestEnemy() != null)
             {
+                ClosestEnemy = GetClosestEnemy();
+            }
+            if (ShootCooldown<0 && ClosestEnemy !=null)
+            {
+                ShootCooldown = startSpeed;
                 Attack();
-                ShootCooldown = 0;
             }
             
         }
+        
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        
+        if (collision.gameObject.tag == "FarEnemy")
+        {
+            collision.gameObject.tag = "Enemy";
+        }
+        
     }
 
     public Health GetClosestEnemy()
@@ -74,12 +90,15 @@ public class EnemyRadar : MonoBehaviour
         Health trans = null;
         foreach (Health go in EnemyHealths)
         {
-            float CurrentDistance;
-            CurrentDistance = Vector2.Distance(transform.position,go.transform.position);
-            if (CurrentDistance<ClosestDistance)
+            if (go.tag == "Enemy")
             {
-                ClosestDistance = CurrentDistance;
-                trans = go;
+                float CurrentDistance;
+                CurrentDistance = Vector2.Distance(transform.position, go.transform.position);
+                if (CurrentDistance < ClosestDistance)
+                {
+                    ClosestDistance = CurrentDistance;
+                    trans = go;
+                }
             }
         }
         return trans;

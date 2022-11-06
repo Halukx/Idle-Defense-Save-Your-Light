@@ -4,6 +4,6 @@ using UnityEngine;
 
 public class Damage : MonoBehaviour
 {
-    public static float _damage { get; set; } = 10;
+    public static float _damage { get; set; } = 25;
 
 }
