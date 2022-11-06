@@ -12,7 +12,7 @@ public class EnemyRadar : MonoBehaviour
 
     public float ShootSpeed = 2f;
     private float ShootCooldown=0F;
-    public Damage damage;
+    
 
     
 
@@ -36,8 +36,9 @@ public class EnemyRadar : MonoBehaviour
         {
             ClosestEnemy = GetClosestEnemy();
         }
+        ShootCooldown += Time.deltaTime;
     }
-    //GetClosedEnemy.GetComponent<>Hp>Damage
+    
     private void Attack()
     {
         if (ClosestEnemy.HP<=0)
@@ -46,11 +47,9 @@ public class EnemyRadar : MonoBehaviour
         }
         else
         {
-            Debug.Log("saf213sad");
             var newBullet = Instantiate(Bullet, new Vector3(0, 0, 0), Quaternion.identity);
             newBullet.transform.parent = null;
-            ClosestEnemy.HP -= damage._damage;
-
+            ClosestEnemy.HP -= Damage._damage;
         }
     }
 
@@ -58,12 +57,12 @@ public class EnemyRadar : MonoBehaviour
     {
         if (collision.gameObject.tag=="Enemy")
         {
-            ShootCooldown += Time.deltaTime;
             if (ShootCooldown>=ShootSpeed)
             {
                 Attack();
                 ShootCooldown = 0;
             }
+            
         }
     }
 
@@ -76,7 +75,7 @@ public class EnemyRadar : MonoBehaviour
         foreach (Health go in EnemyHealths)
         {
             float CurrentDistance;
-            CurrentDistance = Vector3.Distance(transform.position,go.transform.position);
+            CurrentDistance = Vector2.Distance(transform.position,go.transform.position);
             if (CurrentDistance<ClosestDistance)
             {
                 ClosestDistance = CurrentDistance;

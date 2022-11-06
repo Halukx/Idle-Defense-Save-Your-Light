@@ -4,12 +4,14 @@ using UnityEngine;
 
 public class Health : MonoBehaviour
 {
-    public float HP;
+    public float HP ;
     public float HP2;
+    
     
     void Start()
     {
-        HP2= HP;
+        HP = 10 + GameProgress.waveCounter * 1.1f;
+        HP2 = HP;
         EnemyRadar.enemyRadar.EnemyHealths.Add(this);
     }
 
@@ -19,12 +21,14 @@ public class Health : MonoBehaviour
         {
             if (collision.gameObject.tag == "Bullet")
             {
-                HP2 -= EnemyRadar.enemyRadar.damage._damage;
+                HP2 -= Damage._damage;
                 Destroy(collision.gameObject);
                 if (HP2<=0)
                 {
                     Destroy(gameObject);
                     EnemyRadar.enemyRadar.EnemyHealths.Remove(this);
+                    GameProgress.killCounter++;
+                    ProgressBar.IncrementSlider();
                 }
             }
         }
