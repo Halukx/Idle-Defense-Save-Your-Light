@@ -17,10 +17,10 @@ public class ProgressBar : MonoBehaviour
 
     public static void IncrementSlider()
     {
-        slider.value=GameProgress.killCounter;
+        slider.value=GameProgress.Instance.killCounter;
     }
     public void SliderMaxValue()
     {
-        slider.maxValue = GameProgress.killToNextWave;
+        slider.maxValue = GameProgress.Instance.killToNextWave;
     }
 }

@@ -5,17 +5,20 @@ using TMPro;
 
 public class GameProgress : MonoBehaviour
 {
-
-    public static int killCounter;
-    public static int killToNextWave=5;
-    public static float waveToNextLevel=10;
-    public static int waveCounter=1;
-    public static int levelCounter=1;
+    public static GameProgress Instance { get; private set; }
+    private void Awake()
+    {
+        Instance = this;
+    }
+    public int killCounter;
+    public int killToNextWave=5;
+    public float waveToNextLevel=10;
+    public int waveCounter=1;
+    public int levelCounter=1;
     [SerializeField] public TextMeshProUGUI levelCounterText;
 
     private void Start()
     {
-        //levelCounterText=GetComponent<TextMeshProUGUI>();
         levelCounterText.text = levelCounter.ToString();
     }
     private void Update()

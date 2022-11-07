@@ -10,7 +10,7 @@ public class Health : MonoBehaviour
     
     void Start()
     {
-        HP = 10 + GameProgress.waveCounter * 1.1f * GameProgress.levelCounter;
+        HP = 10 + GameProgress.Instance.waveCounter * 1.1f * GameProgress.Instance.levelCounter;
         HP2 = HP;
         EnemyRadar.enemyRadar.EnemyHealths.Add(this);
     }
@@ -28,7 +28,7 @@ public class Health : MonoBehaviour
                     Debug.Log("sadas");
                     Destroy(gameObject);
                     EnemyRadar.enemyRadar.EnemyHealths.Remove(this);
-                    GameProgress.killCounter++;
+                    GameProgress.Instance.killCounter++;
                     ProgressBar.IncrementSlider();
                     EnemyRadar.ClosestEnemy = null;
                 }

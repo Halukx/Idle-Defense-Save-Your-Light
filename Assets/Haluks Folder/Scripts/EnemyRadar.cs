@@ -12,7 +12,7 @@ public class EnemyRadar : MonoBehaviour
 
 
     
-    private float startSpeed=0.5f;
+    private float startSpeed=0.2f;
     private float ShootCooldown;
 
 
