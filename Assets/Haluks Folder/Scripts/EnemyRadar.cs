@@ -7,8 +7,8 @@ using UnityEngine;
 public class EnemyRadar : MonoBehaviour
 {
     private GameObject[] MultipleEnemies;
-    public static Health ClosestEnemy;
-    public List<Health> EnemyHealths=new List<Health>();
+    public static EnemyHealth ClosestEnemy;
+    public List<EnemyHealth> EnemyHealths=new List<EnemyHealth>();
 
 
     
@@ -42,7 +42,7 @@ public class EnemyRadar : MonoBehaviour
 
     private void Attack()
     {
-        if (ClosestEnemy.HP<=0)
+        if (ClosestEnemy.enemyHP<=0)
         {
             EnemyHealths.Remove(ClosestEnemy);
             ClosestEnemy = null;
@@ -51,10 +51,10 @@ public class EnemyRadar : MonoBehaviour
         {
             var newBullet = Instantiate(Bullet, new Vector3(0, 0, 0), Quaternion.identity);
             newBullet.transform.parent = null;
-            ClosestEnemy.HP -= Damage._damage;
+            ClosestEnemy.enemyHP -= Damage.playerDamage;
         }
     }
-
+   
     private void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.gameObject.tag=="Enemy")
@@ -82,13 +82,13 @@ public class EnemyRadar : MonoBehaviour
         
     }
 
-    public Health GetClosestEnemy()
+    public EnemyHealth GetClosestEnemy()
     {
         
         MultipleEnemies = GameObject.FindGameObjectsWithTag("Enemy");
         float ClosestDistance = Mathf.Infinity;
-        Health trans = null;
-        foreach (Health go in EnemyHealths)
+        EnemyHealth trans = null;
+        foreach (EnemyHealth go in EnemyHealths)
         {
             if (go.tag == "Enemy")
             {

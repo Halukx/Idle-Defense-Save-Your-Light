@@ -2,16 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Health : MonoBehaviour
+public class EnemyHealth : MonoBehaviour
 {
-    public float HP ;
-    public float HP2;
+    public float enemyHP ;
+    public float enemyHP2;
+
+    
     
     
     void Start()
     {
-        HP = 10 + GameProgress.Instance.waveCounter * 1.1f * GameProgress.Instance.levelCounter;
-        HP2 = HP;
+        enemyHP = 10 + GameProgress.Instance.waveCounter * 1.1f * GameProgress.Instance.levelCounter;
+        enemyHP2 = enemyHP;
         EnemyRadar.enemyRadar.EnemyHealths.Add(this);
     }
 
@@ -21,9 +23,9 @@ public class Health : MonoBehaviour
         {
             if (collision.gameObject.tag == "Bullet")
             {
-                HP2 -= Damage._damage;
+                enemyHP2 -= Damage.playerDamage;
                 Destroy(collision.gameObject);
-                if (HP2 <= 0)
+                if (enemyHP2 <= 0)
                 {
                     Debug.Log("sadas");
                     Destroy(gameObject);
