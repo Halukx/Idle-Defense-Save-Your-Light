@@ -2,32 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BulletObjectPool : EnemyRadar
+public class BulletObjectPool : MonoBehaviour
 {
-    private Queue<GameObject> pooledObjects;
-    [SerializeField] private GameObject objectPrefab;
-    [SerializeField] private int poolSize;
-
+    public static BulletObjectPool instance { get; private set; }
+    [SerializeField] GameObject bulletPrefab;
+    public List<GameObject> bulletObjects = new List<GameObject>();
     private void Awake()
     {
-        pooledObjects = new Queue<GameObject>();
-
-        for (int i = 0; i < poolSize; i++)
+        instance = this;
+        for (int i = 0; i < 20; i++)
         {
-            GameObject obj = Instantiate(objectPrefab);
-            obj.SetActive(false);
-
-            pooledObjects.Enqueue(obj);
+            GameObject go = Instantiate(bulletPrefab);
+            bulletObjects.Add(go);
+            go.SetActive(false);
         }
-    }
-    public GameObject GetPooledObject()
-    {
-        GameObject obj = pooledObjects.Dequeue();
-
-        obj.SetActive(true);
-
-        pooledObjects.Enqueue(obj);
-
-        return obj;
     }
 }

@@ -29,6 +29,7 @@ public class EnemyHealth : MonoBehaviour
                 if (enemyHP2 <= 0)
                 {
                     Debug.Log("sadas");
+                    gameObject.tag = "FarEnemy";
                     gameObject.SetActive(false);
                     EnemyRadar.enemyRadar.EnemyHealths.Remove(this);
                     GameProgress.Instance.killCounter++;

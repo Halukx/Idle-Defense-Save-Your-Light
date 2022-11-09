@@ -28,31 +28,28 @@ public class GameProgress : MonoBehaviour
         //Debug.Log("kill counter: " + killCounter);
         if (killCounter>=killToNextWave)
         {
-            killToNextWaveIncreaser();
+            KillToNextWaveIncreaser();
             waveCounter++;
-            EnemyGenerator.Instance.spawnRate = EnemyGenerator.Instance.spawnRate*0.991f; //deðiþken
+            EnemyGenerator.spawnRate = EnemyGenerator.spawnRate*UpgradeManager.instance.spawnRateIncreaseAmount; //deðiþken
         }
         if (waveCounter>=waveToNextLevel)
         {
-            waveToNextLevelIncreaser();
+            WaveToNextLevelIncreaser();
             levelCounter++;
             levelCounterText.text = levelCounter.ToString();
         }
     }
 
 
-    public void killToNextWaveIncreaser()
+    public void KillToNextWaveIncreaser()
     {
         killToNextWave++ ;
         killCounter = 0;
-        
     }
-    public void waveToNextLevelIncreaser()
+    public void WaveToNextLevelIncreaser()
     {
         waveToNextLevel += 0.34f;
         killCounter = 0;
         waveCounter = 0;
-
-
     }
 }
