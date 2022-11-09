@@ -1,22 +1,34 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class EnemyGenerator : MonoBehaviour
 {
     [SerializeField] public GameObject Enemy1;
     [SerializeField] public GameObject Enemy2;
-    public static int widthScale = 6;
-    public static float heightScale = 8;
-    public List<Vector2> spawnPoints = new List<Vector2>();
 
+    public static EnemyGenerator Instance;
+    public int widthScale = 3;
+    public float heightScale = 4;
+    public static List<Vector2> spawnPoints = new List<Vector2>();
+
+    public float spawnRate;
+    [SerializeField] public float _spawnRateInspector;
+
+    private void Awake()
+    {
+        Instance = this;
+    }
     private void Start()
     {
-        EnemySpawner();
-        InvokeRepeating("Spawn", 1,SpawnRate.spawnRate);
+    }
+    private void Update()
+    {
+        spawnRate = _spawnRateInspector;
     }
 
-    void EnemySpawner()
+    public void EnemySpawnPositions()
     {
         for (int i = 0; i < 90; i++)
         {
@@ -26,9 +38,11 @@ public class EnemyGenerator : MonoBehaviour
         }
         
     }
-    void Spawn()
+
+    IEnumerator SpawnEnemy()
     {
-        Instantiate(Enemy1, spawnPoints[Random.Range(1,88)], Quaternion.identity);
+        Instantiate(Enemy1, spawnPoints[Random.Range(1, 88)], Quaternion.identity);
+        yield return new WaitForSeconds(spawnRate);
     }
     
     

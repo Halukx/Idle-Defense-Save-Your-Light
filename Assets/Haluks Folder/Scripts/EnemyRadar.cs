@@ -9,6 +9,7 @@ public class EnemyRadar : MonoBehaviour
     private GameObject[] MultipleEnemies;
     public static EnemyHealth ClosestEnemy;
     public List<EnemyHealth> EnemyHealths=new List<EnemyHealth>();
+    [SerializeField] public Transform playerPos;
 
 
     
@@ -38,21 +39,6 @@ public class EnemyRadar : MonoBehaviour
         
         ShootCooldown -= Time.deltaTime;
         
-    }
-
-    private void Attack()
-    {
-        if (ClosestEnemy.enemyHP<=0)
-        {
-            EnemyHealths.Remove(ClosestEnemy);
-            ClosestEnemy = null;
-        }
-        else
-        {
-            var newBullet = Instantiate(Bullet, new Vector3(0, 0, 0), Quaternion.identity);
-            newBullet.transform.parent = null;
-            ClosestEnemy.enemyHP -= Damage.playerDamage;
-        }
     }
    
     private void OnTriggerStay2D(Collider2D collision)
@@ -102,5 +88,21 @@ public class EnemyRadar : MonoBehaviour
             }
         }
         return trans;
+    }
+
+    public void Attack()
+    {
+        if (ClosestEnemy.enemyHP <= 0)
+        {
+            EnemyHealths.Remove(ClosestEnemy);
+            ClosestEnemy = null;
+        }
+        else
+        {
+            var newBullet = Instantiate(Bullet, playerPos.transform.position, Quaternion.identity);
+            newBullet.transform.parent = null;
+            //BulletObjectPool.GetPooledObject();
+            ClosestEnemy.enemyHP -= Damage.playerDamage;
+        }
     }
 }

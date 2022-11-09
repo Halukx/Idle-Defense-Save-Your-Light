@@ -4,5 +4,11 @@ using UnityEngine;
 
 public class SpawnRate : MonoBehaviour
 {
-    public static float spawnRate=1f;
+    public static SpawnRate Instance { get; private set; }
+    
+    private void Awake()
+    {
+        Instance = this;
+    }
+    
 }

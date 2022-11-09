@@ -26,11 +26,11 @@ public class GameProgress : MonoBehaviour
         //Debug.Log("wave counter:" + waveCounter);
         //Debug.Log("level counter " + levelCounter);
         //Debug.Log("kill counter: " + killCounter);
-        if (killCounter==killToNextWave)
+        if (killCounter>=killToNextWave)
         {
             killToNextWaveIncreaser();
             waveCounter++;
-            SpawnRate.spawnRate = SpawnRate.spawnRate*0.991f; //deðiþken
+            EnemyGenerator.Instance.spawnRate = EnemyGenerator.Instance.spawnRate*0.991f; //deðiþken
         }
         if (waveCounter>=waveToNextLevel)
         {

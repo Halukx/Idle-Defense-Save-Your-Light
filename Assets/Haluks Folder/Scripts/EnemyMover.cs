@@ -5,13 +5,14 @@ using static UnityEngine.GraphicsBuffer;
 
 public class EnemyMover : MonoBehaviour
 {
-    public GameObject target;
+    public GameObject targetPos;
+
     private void Update()
     {
         EnemyMovement();
     }
     public void EnemyMovement()
     {
-        transform.position = Vector2.MoveTowards(transform.position, target.transform.position, 1f * Time.deltaTime);
+        transform.position = Vector3.MoveTowards(transform.position, GameObject.FindGameObjectWithTag("Player").transform.position, 0.4f * Time.deltaTime);
     }
 }

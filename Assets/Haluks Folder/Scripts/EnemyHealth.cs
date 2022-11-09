@@ -24,11 +24,12 @@ public class EnemyHealth : MonoBehaviour
             if (collision.gameObject.tag == "Bullet")
             {
                 enemyHP2 -= Damage.playerDamage;
-                Destroy(collision.gameObject);
+                //gameObject.SetActive(false);
+                //Destroy(collision);
                 if (enemyHP2 <= 0)
                 {
                     Debug.Log("sadas");
-                    Destroy(gameObject);
+                    gameObject.SetActive(false);
                     EnemyRadar.enemyRadar.EnemyHealths.Remove(this);
                     GameProgress.Instance.killCounter++;
                     ProgressBar.IncrementSlider();
