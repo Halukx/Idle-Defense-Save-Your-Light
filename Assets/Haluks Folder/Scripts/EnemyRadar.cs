@@ -1,7 +1,4 @@
-using System.Collections;
 using System.Collections.Generic;
-using System.Runtime.CompilerServices;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class EnemyRadar : MonoBehaviour
@@ -9,17 +6,14 @@ public class EnemyRadar : MonoBehaviour
     private GameObject[] MultipleEnemies;
     public static EnemyHealth ClosestEnemy;
     public List<EnemyHealth> EnemyHealths=new List<EnemyHealth>();
-    [SerializeField] public Transform playerPos;
+    public Transform playerPos;
 
-
+    int bulletIndex;
     
-    private float startSpeed=0.2f;
+    public static float startSpeed=1f;
     private float ShootCooldown;
 
-
-
-
-    public static EnemyRadar enemyRadar;
+    public static EnemyRadar enemyRadar { get; private set; }
     
     [SerializeField] public GameObject Bullet;
 
@@ -36,9 +30,7 @@ public class EnemyRadar : MonoBehaviour
 
     private void Update()
     {
-        
         ShootCooldown -= Time.deltaTime;
-        
     }
    
     private void OnTriggerStay2D(Collider2D collision)
@@ -99,10 +91,15 @@ public class EnemyRadar : MonoBehaviour
         }
         else
         {
-            var newBullet = Instantiate(Bullet, playerPos.transform.position, Quaternion.identity);
-            newBullet.transform.parent = null;
-            //BulletObjectPool.GetPooledObject();
+            //var newBullet = Instantiate(Bullet, playerPos.transform.position, Quaternion.identity);
+            //newBullet.transform.parent = null;
+            BulletObjectPool.instance.bulletObjects[bulletIndex].SetActive(true);
+            bulletIndex++;
             ClosestEnemy.enemyHP -= Damage.playerDamage;
+            if (bulletIndex>=20)
+            {
+                bulletIndex = 0;
+            }
         }
     }
 }

@@ -8,13 +8,14 @@ public class EnemyGenerator : MonoBehaviour
     [SerializeField] public GameObject Enemy1;
     [SerializeField] public GameObject Enemy2;
 
-    public static EnemyGenerator Instance;
+    public static EnemyGenerator Instance { get; private set; }
     public int widthScale = 3;
     public float heightScale = 4;
     public static List<Vector2> spawnPoints = new List<Vector2>();
 
-    public float spawnRate;
-    [SerializeField] public float _spawnRateInspector;
+    public static float spawnRate=1f;
+    public float _spawnRateInspector;
+
 
     private void Awake()
     {
@@ -25,7 +26,8 @@ public class EnemyGenerator : MonoBehaviour
     }
     private void Update()
     {
-        spawnRate = _spawnRateInspector;
+        //spawnRate = _spawnRateInspector;
+        Debug.Log(spawnRate);
     }
 
     public void EnemySpawnPositions()
@@ -33,7 +35,8 @@ public class EnemyGenerator : MonoBehaviour
         for (int i = 0; i < 90; i++)
         {
             float a = i * Mathf.PI * 2f / 90;
-            Vector2 spawnPoint = new Vector2(Mathf.Sin(a) * widthScale, Mathf.Cos(a) * heightScale);
+            Vector3 spawnPoint = new Vector3(Mathf.Sin(a) * widthScale, Mathf.Cos(a) * heightScale);
+            spawnPoint += transform.position;
             spawnPoints.Add(spawnPoint);
         }
         
