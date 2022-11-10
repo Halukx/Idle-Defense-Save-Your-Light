@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using UnityEngine;
 
+[DebuggerDisplay("{" + nameof(GetDebuggerDisplay) + "(),nq}")]
 public class Background : MonoBehaviour
 {
     float backgroundposition;
@@ -15,7 +17,7 @@ public class Background : MonoBehaviour
   
     void Update()
     {
-        if (backgroundposition + distance < Camera.main.transform.position.y) ;
+        if (backgroundposition + distance < Camera.main.transform.position.y) 
         {
             BackgroundPlacement();
         }
@@ -26,5 +28,10 @@ public class Background : MonoBehaviour
         backgroundposition = +(distance * 2);
         Vector2 NewPosition = new Vector2(110, backgroundposition);
         transform.position = NewPosition;
+    }
+
+    private string GetDebuggerDisplay()
+    {
+        return ToString();
     }
 }
