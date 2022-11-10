@@ -30,7 +30,7 @@ public class GameProgress : MonoBehaviour
         {
             KillToNextWaveIncreaser();
             waveCounter++;
-            EnemyGenerator.spawnRate = EnemyGenerator.spawnRate*UpgradeManager.instance.spawnRateIncreaseAmount; //deðiþken
+            UpgradeManager.instance.spawnRate = UpgradeManager.instance.spawnRate*UpgradeManager.instance.SpawnRateIncreaseAmount; //deðiþken
         }
         if (waveCounter>=waveToNextLevel)
         {
@@ -43,7 +43,7 @@ public class GameProgress : MonoBehaviour
 
     public void KillToNextWaveIncreaser()
     {
-        killToNextWave++ ;
+        killToNextWave=killToNextWave++;
         killCounter = 0;
     }
     public void WaveToNextLevelIncreaser()

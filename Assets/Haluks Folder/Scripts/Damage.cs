@@ -5,7 +5,7 @@ using UnityEngine;
 public class Damage : MonoBehaviour
 {
     
-    public static float playerDamage = 5;
+    public static float playerDamage = 10;
     public static float enemyDamage  = 1;
 
 }

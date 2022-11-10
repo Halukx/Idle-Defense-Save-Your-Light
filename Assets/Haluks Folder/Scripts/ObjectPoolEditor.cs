@@ -16,7 +16,7 @@ public class ObjectPoolEditor : MonoBehaviour
     }
     private void Update()
     {
-        spawnInterval = EnemyGenerator.spawnRate;
+        spawnInterval = UpgradeManager.instance.spawnRate;
     }
 
     private IEnumerator SpawnRoutineEnemy()

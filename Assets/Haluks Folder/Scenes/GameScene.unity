@@ -328,9 +328,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3cd5410a7137424d81009cd72ca52a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  info: U can change Attack attributes.
   damageIncreaseAmount: 1
   shootSpeedIncreaseAmount: 0.02
-  spawnRateIncreaseAmount: 0.91
+  _info: U can change spawn rate settings.
+  spawnRate: 1
+  SpawnRateIncreaseAmount: 0.28
+  playerHP: 0
 --- !u!4 &26607796
 Transform:
   m_ObjectHideFlags: 0

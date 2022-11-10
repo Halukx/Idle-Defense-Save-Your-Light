@@ -23,7 +23,7 @@ public class EnemyHealth : MonoBehaviour
         {
             if (collision.gameObject.tag == "Bullet")
             {
-                enemyHP2 -= Damage.playerDamage;
+                //enemyHP2 -= Damage.playerDamage;
                 //gameObject.SetActive(false);
                 //Destroy(collision);
                 if (enemyHP2 <= 0)

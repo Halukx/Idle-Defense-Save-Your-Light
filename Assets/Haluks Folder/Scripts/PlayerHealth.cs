@@ -11,4 +11,8 @@ public class PlayerHealth : MonoBehaviour
         
     }
     public float playerHP=3;
+    private void Update()
+    {
+        playerHP=UpgradeManager.instance.playerHP;
+    }
 }

@@ -13,7 +13,7 @@ public class EnemyGenerator : MonoBehaviour
     public float heightScale = 4;
     public static List<Vector2> spawnPoints = new List<Vector2>();
 
-    public static float spawnRate=1f;
+    //public static float spawnRate=1f;
     public float _spawnRateInspector;
 
 
@@ -27,7 +27,7 @@ public class EnemyGenerator : MonoBehaviour
     private void Update()
     {
         //spawnRate = _spawnRateInspector;
-        Debug.Log(spawnRate);
+        //Debug.Log(spawnRate);
     }
 
     public void EnemySpawnPositions()
@@ -45,7 +45,7 @@ public class EnemyGenerator : MonoBehaviour
     IEnumerator SpawnEnemy()
     {
         Instantiate(Enemy1, spawnPoints[Random.Range(1, 88)], Quaternion.identity);
-        yield return new WaitForSeconds(spawnRate);
+        yield return new WaitForSeconds(UpgradeManager.instance.spawnRate);
     }
     
     
