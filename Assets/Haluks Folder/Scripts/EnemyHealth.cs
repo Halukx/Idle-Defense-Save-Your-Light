@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class EnemyHealth : MonoBehaviour
@@ -23,10 +24,10 @@ public class EnemyHealth : MonoBehaviour
         {
             if (collision.gameObject.tag == "Bullet")
             {
-                //enemyHP2 -= Damage.playerDamage;
+                enemyHP -= collision.GetComponent<Bullet>().playerDamage_;
                 //gameObject.SetActive(false);
                 //Destroy(collision);
-                if (enemyHP2 <= 0)
+                if (enemyHP <= 0)
                 {
                     Debug.Log("sadas");
                     gameObject.tag = "FarEnemy";

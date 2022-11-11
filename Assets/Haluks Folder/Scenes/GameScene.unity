@@ -329,12 +329,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   info: U can change Attack attributes.
-  damageIncreaseAmount: 1
+  damageIncreaseAmount: 10.54
   shootSpeedIncreaseAmount: 0.02
   _info: U can change spawn rate settings.
-  spawnRate: 1
-  SpawnRateIncreaseAmount: 0.28
-  playerHP: 0
+  spawnRate: 3.34
+  SpawnRateIncreaseAmount: 0.98
+  playerHP: 1.46
 --- !u!4 &26607796
 Transform:
   m_ObjectHideFlags: 0
@@ -3153,7 +3153,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EnemyHealths: []
   playerPos: {fileID: 861695073}
-  Bullet: {fileID: 3065373136677304028, guid: aac44726bcb8f3f478ba5ebe8d6b4241, type: 3}
 --- !u!1 &1269003801
 GameObject:
   m_ObjectHideFlags: 0
@@ -4730,7 +4729,7 @@ MonoBehaviour:
   Enemy2: {fileID: 3065373136677304028, guid: aac44726bcb8f3f478ba5ebe8d6b4241, type: 3}
   widthScale: 3
   heightScale: 4
-  _spawnRateInspector: 1.16
+  _spawnRateInspector: 6.53
 --- !u!1 &1755298657
 GameObject:
   m_ObjectHideFlags: 0
