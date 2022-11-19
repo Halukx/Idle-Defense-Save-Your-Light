@@ -9,8 +9,8 @@ EditorBuildSettings:
     path: Assets/Scenes/SampleScene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 1
-    path: Assets/Mustafas Folder/Scenes/MainStart.unity
-    guid: ed90a644c9d45f24597c3b77dcb72e0c
+    path: Assets/Mustafas Folder/Scenes/MainNew.unity
+    guid: 4a75dc47f0dd82e4b816adb1e884d31a
   - enabled: 1
     path: Assets/Haluks Folder/Scenes/GameScene.unity
     guid: e876030d379a528489dcb06230ab0e93
