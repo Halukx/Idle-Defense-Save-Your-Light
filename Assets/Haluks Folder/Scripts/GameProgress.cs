@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using Unity.VisualScripting;
+using UnityEditor.UIElements;
 
 public class GameProgress : MonoBehaviour
 {
@@ -15,7 +17,8 @@ public class GameProgress : MonoBehaviour
     public float waveToNextLevel=10;
     public int waveCounter=1;
     public int levelCounter=1;
-    [SerializeField] public TextMeshProUGUI levelCounterText;
+    public TextMeshProUGUI levelCounterText;
+    public TextMeshProUGUI coinCounterText; 
 
     private void Start()
     {
@@ -26,11 +29,13 @@ public class GameProgress : MonoBehaviour
         //Debug.Log("wave counter:" + waveCounter);
         //Debug.Log("level counter " + levelCounter);
         //Debug.Log("kill counter: " + killCounter);
+        coinCounterText.text = Mathf.FloorToInt(GameData.Instance.Coin).ToString() ;
         if (killCounter>=killToNextWave)
         {
             KillToNextWaveIncreaser();
             waveCounter++;
             UpgradeManager.instance.spawnRate = UpgradeManager.instance.spawnRate*UpgradeManager.instance.SpawnRateIncreaseAmount; //deðiþken
+            CoinIncreaseMultiplier();
         }
         if (waveCounter>=waveToNextLevel)
         {
@@ -51,5 +56,9 @@ public class GameProgress : MonoBehaviour
         waveToNextLevel += 0.34f;
         killCounter = 0;
         waveCounter = 0;
+    }
+    public void CoinIncreaseMultiplier()
+    {
+        UpgradeManager.instance.coinIncreaseAmount *= UpgradeManager.instance.coinIncreaseMultiplier;
     }
 }

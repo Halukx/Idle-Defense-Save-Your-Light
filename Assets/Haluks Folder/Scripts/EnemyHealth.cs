@@ -29,13 +29,14 @@ public class EnemyHealth : MonoBehaviour
                 //Destroy(collision);
                 if (enemyHP <= 0)
                 {
-                    Debug.Log("sadas");
                     gameObject.tag = "FarEnemy";
                     gameObject.SetActive(false);
                     EnemyRadar.enemyRadar.EnemyHealths.Remove(this);
                     GameProgress.Instance.killCounter++;
                     ProgressBar.IncrementSlider();
                     EnemyRadar.ClosestEnemy = null;
+                    GameData.Instance.Coin += UpgradeManager.instance.coinIncreaseAmount;
+                    PlayerPrefs.SetFloat("Coin",GameData.Instance.Coin);
                 }
             }
         }
