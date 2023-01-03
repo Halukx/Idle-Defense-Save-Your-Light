@@ -45,7 +45,7 @@ public class EnemyGenerator : MonoBehaviour
     IEnumerator SpawnEnemy()
     {
         Instantiate(Enemy1, spawnPoints[Random.Range(1, 88)], Quaternion.identity);
-        yield return new WaitForSeconds(UpgradeManager.instance.spawnRate);
+        yield return new WaitForSeconds(SpawnRate.Instance.spawnRate);
     }
     
     

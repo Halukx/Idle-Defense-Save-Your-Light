@@ -17,12 +17,10 @@ public class Bullet : MonoBehaviour
     private void Awake()
     {
         Instance = this;
-        rb = GetComponent<Rigidbody2D>();}
-
-    private void Start()
-    {
-        //playerDamage_ = Damage.playerDamage ;
+        rb = GetComponent<Rigidbody2D>();
     }
+
+
 
     private void OnTriggerEnter2D(Collider2D collision)
     {

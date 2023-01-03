@@ -39,6 +39,8 @@ public class EnemyHealth : MonoBehaviour
                     PlayerPrefs.SetFloat("Coin",GameData.Instance.Coin);
                 }
             }
+            
         }
     }
+
 }

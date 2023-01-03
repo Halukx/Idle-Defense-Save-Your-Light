@@ -5,12 +5,13 @@ using UnityEditor.UIElements;
 using UnityEngine;
 using static UnityEngine.GraphicsBuffer;
 
-public class EnemyRadar : MonoBehaviour
+public class EnemyRadar  : MonoBehaviour
 {
     private GameObject[] MultipleEnemies;
     public static EnemyHealth ClosestEnemy;
     public List<EnemyHealth> EnemyHealths=new List<EnemyHealth>();
     public Transform playerPos;
+    public GameObject Player;
 
     int bulletIndex;
     
@@ -35,6 +36,7 @@ public class EnemyRadar : MonoBehaviour
     {
         ShootCooldown -= Time.deltaTime;
         GetClosestEnemy();
+        PlayerRotate();
     }
    
     private void OnTriggerStay2D(Collider2D collision)
@@ -42,12 +44,12 @@ public class EnemyRadar : MonoBehaviour
         if (collision.gameObject.tag == "Enemy")
         {
 
-            var offset = -90f;
-            Vector2 direction = collision.transform.position - transform.parent.position;
-            direction.Normalize();
-            float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-            Quaternion rotation = Quaternion.AngleAxis(angle + offset, Vector3.forward);
-            transform.parent.rotation = Quaternion.Slerp(transform.parent.rotation, rotation, 13 * Time.deltaTime);
+            //var offset = -90f;
+            //Vector2 direction = collision.transform.position - transform.parent.position;
+            //direction.Normalize();
+            //float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+            //Quaternion rotation = Quaternion.AngleAxis(angle + offset, Vector3.forward);
+            //transform.parent.rotation = Quaternion.Slerp(transform.parent.rotation, rotation, 1 * Time.deltaTime);
 
 
 
@@ -114,6 +116,31 @@ public class EnemyRadar : MonoBehaviour
                     {
                         bulletIndex = 0;
                     }
+        }
+    }
+    public void PlayerRotate()
+    {
+        if (ClosestEnemy!=null)
+        {
+
+            // Hedef nesnenin pozisyonunu ve kendi pozisyonunu al
+            Vector3 targetPosition = ClosestEnemy.transform.position;
+            Vector3 selfPosition = playerPos.transform.position;
+            
+            // Ýki nesnenin pozisyonlarý arasýndaki yön vektörünü al
+            Vector3 direction = targetPosition - selfPosition;
+
+            // Yön vektörünü y radians cinsinden döndür
+            float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+
+            // Döndürülecek nesnenin geçerli açýsýný al
+            Quaternion rotation = transform.rotation;
+
+            // Geçerli açýyý yön vektörü açýsýna doðru döndür
+            rotation = Quaternion.RotateTowards(rotation, Quaternion.Euler(0f, 0f, angle-90), 1333 * Time.deltaTime);
+
+            // Nesnenin açýsýný güncelle
+            playerPos.transform.rotation = rotation;
         }
     }
 }

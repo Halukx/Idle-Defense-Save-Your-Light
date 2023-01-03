@@ -34,7 +34,7 @@ public class GameProgress : MonoBehaviour
         {
             KillToNextWaveIncreaser();
             waveCounter++;
-            UpgradeManager.instance.spawnRate = UpgradeManager.instance.spawnRate*UpgradeManager.instance.SpawnRateIncreaseAmount; //deðiþken
+            SpawnRate.Instance.spawnRate = (SpawnRate.Instance.spawnRate * UpgradeManager.instance.SpawnRateIncreaseAmount); //deðiþken
             CoinIncreaseMultiplier();
         }
         if (waveCounter>=waveToNextLevel)

@@ -328,17 +328,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3cd5410a7137424d81009cd72ca52a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  RadarforRadius: {fileID: 2047224091}
   info: U can change Attack attributes.
   damageIncreaseAmount: 10.54
   shootSpeedIncreaseAmount: 0.02
   _info: U can change spawn rate settings.
-  spawnRate: 3.34
+  _spawnRate: 0.61
   SpawnRateIncreaseAmount: 0.98
   playerHP: 1.46
   damagePrice: 5
   speedPrice: 5
   coinIncreaseAmount: 1
   coinIncreaseMultiplier: 1.1
+  radarPrice: 60
+  doubleDamagePrice: 50
+  doubleDamageChance: 0.04
 --- !u!4 &26607796
 Transform:
   m_ObjectHideFlags: 0
@@ -5420,7 +5424,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 26607795}
         m_TargetAssemblyTypeName: UpgradeManager, Assembly-CSharp
-        m_MethodName: DamageIncrease
+        m_MethodName: RadarIncrease
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -5777,6 +5781,11 @@ MonoBehaviour:
   m_Spacing: {x: 0, y: 0}
   m_Constraint: 0
   m_ConstraintCount: 2
+--- !u!1 &2047224091 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1249267000, guid: 20bc6ea4e528e5847942d75f63007bd6, type: 3}
+  m_PrefabInstance: {fileID: 678396918708479050}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &678396918708479050
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -21,9 +21,20 @@ public class GameData : MonoBehaviour
         DamageGetSet();
         AttackSpeedGetSet();
         LevelGetSet();
+        RadarRadiusGetSet();
     }
 
-
+    public void RadarRadiusGetSet()
+    {
+        if (PlayerPrefs.HasKey("RadarRadius"))
+        {
+            UpgradeManager.instance.RadarforRadius.GetComponent<CircleCollider2D>().radius = PlayerPrefs.GetFloat("RadarRadius");
+        }
+        else
+        {
+            PlayerPrefs.SetFloat("RadarRadius", UpgradeManager.instance.RadarforRadius.GetComponent<CircleCollider2D>().radius);
+        }
+    }
     public void CoinGetSet()
     {
         if (PlayerPrefs.HasKey("Coin"))
@@ -44,6 +55,17 @@ public class GameData : MonoBehaviour
         else
         {
             PlayerPrefs.SetFloat("DamageIncreaseAmount", UpgradeManager.instance.damageIncreaseAmount);
+        }
+    }
+    public void DoubleDamageChangeGetSet()
+    {
+        if (PlayerPrefs.HasKey("DoubleDamageChance"))
+        {
+            UpgradeManager.instance.doubleDamageChance = PlayerPrefs.GetFloat("DoubleDamageChance");
+        }
+        else
+        {
+            PlayerPrefs.SetFloat("DoubleDamageChange", UpgradeManager.instance.doubleDamageChance);
         }
     }
 
