@@ -21,31 +21,28 @@ public class EnemyGenerator : MonoBehaviour
     {
         Instance = this;
     }
-    private void Start()
-    {
-    }
-    private void Update()
-    {
-        //spawnRate = _spawnRateInspector;
-        //Debug.Log(spawnRate);
-    }
 
     public void EnemySpawnPositions()
     {
-        for (int i = 0; i < 90; i++)
+        if (GameManager.GameIsOver==false)
         {
-            float a = i * Mathf.PI * 2f / 90;
-            Vector3 spawnPoint = new Vector3(Mathf.Sin(a) * widthScale, Mathf.Cos(a) * heightScale);
-            spawnPoint += transform.position;
-            spawnPoints.Add(spawnPoint);
+            for (int i = 0; i < 90; i++)
+            {
+                float a = i * Mathf.PI * 2f / 90;
+                Vector3 spawnPoint = new Vector3(Mathf.Sin(a) * widthScale, Mathf.Cos(a) * heightScale);
+                spawnPoint += transform.position;
+                spawnPoints.Add(spawnPoint);
+            }
         }
-        
     }
 
     IEnumerator SpawnEnemy()
     {
-        Instantiate(Enemy1, spawnPoints[Random.Range(1, 88)], Quaternion.identity);
-        yield return new WaitForSeconds(SpawnRate.Instance.spawnRate);
+        if (GameManager.GameIsOver == false)
+        {
+            Instantiate(Enemy1, spawnPoints[Random.Range(1, 88)], Quaternion.identity);
+            yield return new WaitForSeconds(SpawnRate.Instance.spawnRate);
+        }
     }
     
     

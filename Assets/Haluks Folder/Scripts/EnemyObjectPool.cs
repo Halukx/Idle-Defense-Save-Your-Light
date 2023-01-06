@@ -25,11 +25,16 @@ public class EnemyObjectPool : MonoBehaviour
     public GameObject GetPooledObject()
     {
         GameObject obj = pooledObjects.Dequeue();
-        obj.tag = "FarEnemy";
-        obj.SetActive(true);
+        if (GameManager.GameIsOver==false)
+        {
+            
+            obj.tag = "FarEnemy";
+            obj.SetActive(true);
 
-        pooledObjects.Enqueue(obj);
+            pooledObjects.Enqueue(obj);
 
+           
+        }
         return obj;
     }
 }

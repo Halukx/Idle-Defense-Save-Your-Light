@@ -16,6 +16,7 @@ public class ObjectPoolEditor : MonoBehaviour
     }
     private void Update()
     {
+        if(GameManager.GameIsOver==false)
         spawnInterval = SpawnRate.Instance.spawnRate;
     }
 

@@ -34,9 +34,13 @@ public class EnemyRadar  : MonoBehaviour
 
     private void Update()
     {
-        ShootCooldown -= Time.deltaTime;
-        GetClosestEnemy();
-        PlayerRotate();
+        if (GameManager.GameIsOver == false)
+        {
+            ShootCooldown -= Time.deltaTime;
+            GetClosestEnemy();
+            PlayerRotate();
+        }
+
     }
    
     private void OnTriggerStay2D(Collider2D collision)

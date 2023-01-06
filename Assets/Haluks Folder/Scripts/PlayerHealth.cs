@@ -8,11 +8,15 @@ public class PlayerHealth : MonoBehaviour
     private void Awake()
     {
         Instance= this;
-        
+    }
+    private void Start()
+    {
+        playerHP = UpgradeManager.instance.playerHP;
     }
     public float playerHP=3;
     private void Update()
     {
-        playerHP=UpgradeManager.instance.playerHP;
+        
+        Debug.Log("Your hp: " + playerHP);
     }
 }
