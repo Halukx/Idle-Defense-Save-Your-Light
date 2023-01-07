@@ -13,9 +13,6 @@ public class EnemyGenerator : MonoBehaviour
     public float heightScale = 4;
     public static List<Vector2> spawnPoints = new List<Vector2>();
 
-    //public static float spawnRate=1f;
-    public float _spawnRateInspector;
-
 
     private void Awake()
     {
@@ -35,16 +32,5 @@ public class EnemyGenerator : MonoBehaviour
             }
         }
     }
-
-    IEnumerator SpawnEnemy()
-    {
-        if (GameManager.GameIsOver == false)
-        {
-            Instantiate(Enemy1, spawnPoints[Random.Range(1, 88)], Quaternion.identity);
-            yield return new WaitForSeconds(SpawnRate.Instance.spawnRate);
-        }
-    }
-    
-    
 }
 

@@ -6,14 +6,26 @@ using static UnityEngine.GraphicsBuffer;
 public class EnemyMover : MonoBehaviour
 {
     public GameObject targetPos;
-
-    private void Update()
+    public static float enemySpeed=0.4f;
+    private void Start()
+    {
+        if (!PlayerPrefs.HasKey("EnemySpeed"))
+        {
+            enemySpeed = 0.4f;
+            PlayerPrefs.SetFloat("EnemySpeed", enemySpeed);
+        }
+        else
+        {
+            enemySpeed = PlayerPrefs.GetFloat("EnemySpeed");
+        }
+    }
+    private void FixedUpdate()
     {
         if (GameManager.GameIsOver==false)
         EnemyMovement();
     }
     public void EnemyMovement()
     {
-        transform.position = Vector3.MoveTowards(transform.position, GameObject.FindGameObjectWithTag("Player").transform.position, 0.4f * Time.deltaTime);
+        transform.position = Vector3.MoveTowards(transform.position, GameObject.FindGameObjectWithTag("Player").transform.position, enemySpeed * Time.deltaTime);
     }
 }

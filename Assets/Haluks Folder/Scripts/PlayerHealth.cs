@@ -5,15 +5,20 @@ using UnityEngine;
 public class PlayerHealth : MonoBehaviour
 {
     public static PlayerHealth Instance { get; private set; }
+
+    public float playerHP = 3;
+    public float playerMaxHP = 3;
+
     private void Awake()
     {
         Instance= this;
     }
+
     private void Start()
     {
         playerHP = UpgradeManager.instance.playerHP;
     }
-    public float playerHP=3;
+    
     private void Update()
     {
         

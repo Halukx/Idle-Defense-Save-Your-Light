@@ -26,18 +26,17 @@ public class GameProgress : MonoBehaviour
     }
     private void Update()
     {
-        //Debug.Log("wave counter:" + waveCounter);
-        //Debug.Log("level counter " + levelCounter);
-        //Debug.Log("kill counter: " + killCounter);
         coinCounterText.text = Mathf.FloorToInt(GameData.Instance.Coin).ToString() ;
-        if (killCounter>=killToNextWave)
+        if (killCounter>=killToNextWave) //Wave Up
         {
             KillToNextWaveIncreaser();
             waveCounter++;
-            SpawnRate.Instance.spawnRate = (SpawnRate.Instance.spawnRate * UpgradeManager.instance.SpawnRateIncreaseAmount); //deðiþken
+            ObjectPoolEditor.spawnRate = (ObjectPoolEditor.spawnRate - UpgradeManager.instance.SpawnRateIncreaseAmount); //deðiþken
             CoinIncreaseMultiplier();
+            //UpgradeManager.instance.EnemyHPIncrease();
+            UpgradeManager.instance.enemyHPIncreaseAmount *= 1.07f;
         }
-        if (waveCounter>=waveToNextLevel)
+        if (waveCounter>=waveToNextLevel) //Level Up
         {
             WaveToNextLevelIncreaser();
             levelCounter++;

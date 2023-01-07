@@ -5,29 +5,36 @@ using UnityEngine;
 public class ObjectPoolEditor : MonoBehaviour
 {
 
-    [SerializeField] public float spawnInterval;
 
     [SerializeField] private EnemyObjectPool objectPool = null;
+    public static float spawnRate;
 
     private void Start()
     {
         EnemyGenerator.Instance.EnemySpawnPositions();
-        StartCoroutine(nameof(SpawnRoutineEnemy));
+        if (!PlayerPrefs.HasKey("SpawnRate"))
+        {
+            spawnRate = 3f;
+            PlayerPrefs.SetFloat("SpawnRate", spawnRate);
+        }
+        else
+        {
+            spawnRate = PlayerPrefs.GetFloat("SpawnRate");
+        }
+        StartCoroutine(SpawnRoutineEnemy());
     }
-    private void Update()
+    private void Update()   
     {
-        if(GameManager.GameIsOver==false)
-        spawnInterval = SpawnRate.Instance.spawnRate;
+        
     }
 
     private IEnumerator SpawnRoutineEnemy()
     {
-        while (true)
+        while(true)
         {
-            yield return new WaitForSeconds(spawnInterval);
+            yield return new WaitForSeconds(spawnRate);
             var obj = objectPool.GetPooledObject();
-            obj.transform.position = EnemyGenerator.spawnPoints[Random.Range(1, 88)];//new Vector3(10,10,1);
-            
+            obj.transform.position = EnemyGenerator.spawnPoints[Random.Range(1, 88)];
         }
     }
 }

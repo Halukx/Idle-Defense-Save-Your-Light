@@ -330,18 +330,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   RadarforRadius: {fileID: 2047224091}
   info: U can change Attack attributes.
-  damageIncreaseAmount: 10.54
-  shootSpeedIncreaseAmount: 0.02
+  damageIncreaseAmount: 0
+  shootSpeedIncreaseAmount: 0
+  hpIncreaseAmount: 0
+  coinIncreaseAmount: 0
   _info: U can change spawn rate settings.
   _spawnRate: 0.61
   SpawnRateIncreaseAmount: 0.98
+  enemyHPIncreaseAmount: 1.17
   playerHP: 1.46
-  damagePrice: 5
-  speedPrice: 5
-  coinIncreaseAmount: 1
-  coinIncreaseMultiplier: 1.1
-  radarPrice: 60
-  doubleDamagePrice: 50
+  damagePrice: 0
+  speedPrice: 0
+  coinIncreaseMultiplier: 0
+  radarPrice: 0
+  doubleDamagePrice: 0
+  hpPrice: 0
   doubleDamageChance: 0.04
 --- !u!4 &26607796
 Transform:
@@ -665,7 +668,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7bd4abb83038d847833341d1924486c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnInterval: 0
   objectPool: {fileID: 820687129}
 --- !u!1 &123031005
 GameObject:
@@ -1139,7 +1141,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 199311821}
-  - component: {fileID: 199311822}
   - component: {fileID: 199311823}
   m_Layer: 0
   m_Name: GameManager
@@ -1168,18 +1169,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &199311822
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 199311820}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ada240e2c1ebd4f42884b6acee066b23, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &199311823
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5562,7 +5551,6 @@ MonoBehaviour:
   Enemy2: {fileID: 3065373136677304028, guid: aac44726bcb8f3f478ba5ebe8d6b4241, type: 3}
   widthScale: 3
   heightScale: 4
-  _spawnRateInspector: 1.77
 --- !u!1 &1727549361
 GameObject:
   m_ObjectHideFlags: 0

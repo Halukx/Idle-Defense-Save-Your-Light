@@ -14,26 +14,63 @@ public class UpgradeManager : MonoBehaviour
     [ReadOnlyVariable] public string info = "U can change Attack attributes.";
     public float damageIncreaseAmount;
     public float shootSpeedIncreaseAmount;
+    public float hpIncreaseAmount;
+    public float coinIncreaseAmount;
     [Space(25)]
     [Header("Enemy Spawn Rate")]
     [ReadOnlyVariable] public string _info = "U can change spawn rate settings.";
     public float _spawnRate = 1f;
     public float SpawnRateIncreaseAmount;
+    public float enemyHPIncreaseAmount=1.17f;
     [Space(25)]
     [Header("Hp Settings")]
     public float playerHP;
     [Space(25)]
     [Header("Shop")]
-    public float damagePrice = 5;
-    public float speedPrice = 5;
-    public float coinIncreaseAmount = 1;
-    public float coinIncreaseMultiplier = 1.1f;
-    public float radarPrice = 60f;
-    public float doubleDamagePrice = 50f;
+    public float damagePrice;
+    public float speedPrice;
+    public float coinIncreaseMultiplier;
+    public float radarPrice;
+    public float doubleDamagePrice;
+    public float hpPrice;
     [Space(25)]
     [Header("Other Upgrades")]
     public float doubleDamageChance = 0.3f;
 
+    public void DefaultValue()
+    {
+        damageIncreaseAmount = 0.5f;
+        shootSpeedIncreaseAmount = 0.02f;
+        hpIncreaseAmount = 0.5f;
+        coinIncreaseAmount = 1;
+        damagePrice = 30;
+        speedPrice = 78;
+        coinIncreaseAmount = 1.1f;
+        radarPrice = 60f;
+        hpPrice = 75;
+        SpawnRateIncreaseAmount = -0.02f;
+        coinIncreaseAmount = 1;
+        enemyHPIncreaseAmount = 0.4f;
+    }
+    public void LoadValues()
+    {
+        if (PlayerPrefs.HasKey("damagePrice"))
+        {
+            damagePrice = PlayerPrefs.GetFloat("damagePrice");
+        }
+        if (PlayerPrefs.HasKey("speedPrice"))
+        {
+            speedPrice = PlayerPrefs.GetFloat("speedPrice");
+        }
+        if (PlayerPrefs.HasKey("radarPrice"))
+        {
+            radarPrice = PlayerPrefs.GetFloat("radarPrice");
+        }
+        if (PlayerPrefs.HasKey("hpPrice"))
+        {
+            hpPrice = PlayerPrefs.GetFloat("hpPrice");
+        }
+    }
 
     private void Awake()
     {
@@ -41,8 +78,12 @@ public class UpgradeManager : MonoBehaviour
     }
     private void Start()
     {
-        SpawnRate.Instance.spawnRate = _spawnRate;
+        DefaultValue();
+        LoadValues();
+        ObjectPoolEditor.spawnRate = _spawnRate;
     }
+
+    
     public void DamageIncrease()
     {
         if (GameData.Instance.Coin >= damagePrice)
@@ -52,6 +93,8 @@ public class UpgradeManager : MonoBehaviour
             damagePrice *= 1.23f;
             PlayerPrefs.SetFloat("Coin", GameData.Instance.Coin);
             PlayerPrefs.SetFloat("PlayerDamage", Damage.playerDamage);
+            PlayerPrefs.SetFloat("damagePrice", damagePrice);
+            damagePrice = PlayerPrefs.GetFloat("damagePrice");
         }
     }
     public void AttackSpeedIncrease()
@@ -63,19 +106,10 @@ public class UpgradeManager : MonoBehaviour
             speedPrice *= 1.23f;
             PlayerPrefs.SetFloat("Coin", GameData.Instance.Coin);
             PlayerPrefs.SetFloat("AttackSpeed", EnemyRadar.startSpeed);
+            PlayerPrefs.SetFloat("speedPrice", speedPrice);
+            speedPrice = PlayerPrefs.GetFloat("speedPrice");
         }
     }
-    /*public void SpawnRateIncrease()
-    {
-        if (GameData.Instance.Coin >= speedPrice)
-        {
-            SpawnRate.Instance.spawnRate -= SpawnRateIncreaseAmount;
-            GameData.Instance.Coin -= speedPrice;
-            speedPrice *= 1.23f;
-            PlayerPrefs.SetFloat("Coin", GameData.Instance.Coin);
-            PlayerPrefs.SetFloat("SpawnRate", SpawnRate.Instance.spawnRate);
-        }
-    }*/
     public void RadarIncrease()
     {
         if (GameData.Instance.Coin>=radarPrice)
@@ -85,8 +119,25 @@ public class UpgradeManager : MonoBehaviour
             GameData.Instance.Coin -= radarPrice;
             PlayerPrefs.SetFloat("Coin", GameData.Instance.Coin);
             PlayerPrefs.SetFloat("RadarRadius", RadarforRadius.GetComponent<CircleCollider2D>().radius);
+            PlayerPrefs.SetFloat("radarPrice", radarPrice);
+            radarPrice = PlayerPrefs.GetFloat("radarPrice");
         }
     }
-    
-
+    public void HPIncrease()
+    {
+        if (GameData.Instance.Coin >= hpPrice)
+        {
+            PlayerHealth.Instance.playerMaxHP += hpIncreaseAmount;
+            GameData.Instance.Coin -= hpPrice;
+            hpPrice *= 1.23f;
+            PlayerPrefs.SetFloat("Coin", GameData.Instance.Coin);
+            PlayerPrefs.SetFloat("PlayerMaxHP", PlayerHealth.Instance.playerMaxHP);
+            PlayerPrefs.SetFloat("hpPrice", hpPrice);
+            hpPrice = PlayerPrefs.GetFloat("hpPrice");
+        }
+    }
+    public void EnemyHPIncrease()
+    {
+        EnemyHealth.enemyHP += enemyHPIncreaseAmount;
+    }
 }
