@@ -21,7 +21,6 @@ public class EnemyMover : MonoBehaviour
     }
     private void Update()
     {
-        if (GameManager.GameIsOver==false)
         EnemyMovement();
     }
     public void EnemyMovement()
