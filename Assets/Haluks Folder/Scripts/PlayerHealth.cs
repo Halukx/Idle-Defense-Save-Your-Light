@@ -5,23 +5,21 @@ using UnityEngine;
 public class PlayerHealth : MonoBehaviour
 {
     public static PlayerHealth Instance { get; private set; }
-
-    public float playerHP = 3;
-    public float playerMaxHP = 3;
-
     private void Awake()
     {
         Instance= this;
+<<<<<<< HEAD
     }
-
     private void Start()
     {
         playerHP = UpgradeManager.instance.playerHP;
+=======
+        
+>>>>>>> parent of 8c1c52f (Shop menu and death screen added)
     }
-    
+    public float playerHP=3;
     private void Update()
     {
-        
-        Debug.Log("Your hp: " + playerHP);
+        playerHP=UpgradeManager.instance.playerHP;
     }
 }

@@ -12,7 +12,7 @@ public class BulletObjectPool : MonoBehaviour
         instance = this;
         for (int i = 0; i < 20; i++)
         {
-            GameObject go = Instantiate(bulletPrefab);  
+            GameObject go = Instantiate(bulletPrefab);
             bulletObjects.Add(go);
             go.SetActive(false);
         }

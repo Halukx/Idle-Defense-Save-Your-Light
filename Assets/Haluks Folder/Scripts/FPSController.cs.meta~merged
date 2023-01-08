@@ -1,0 +1,19 @@
+fileFormatVersion: 2
+<<<<<<< Updated upstream
+guid: 88cf18630a1a51343890f59646bb0216
+=======
+<<<<<<< Updated upstream:Assets/Haluks Folder/Scripts/DoubleDamage.cs.meta
+guid: 6c8016a7fa9f2b44fb45b24a5341aa5a
+=======
+guid: 88cf18630a1a51343890f59646bb0216
+>>>>>>> Stashed changes:Assets/Haluks Folder/Scripts/FPSController.cs.meta
+>>>>>>> Stashed changes
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
