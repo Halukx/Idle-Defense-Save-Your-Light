@@ -1,12 +1,13 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.UIElements;
 using UnityEngine;
 using static UnityEngine.GraphicsBuffer;
 
 public class EnemyRadar  : MonoBehaviour
 {
+
+    public static EnemyRadar enemyRadar { get; private set; }
+
+
     public static EnemyRadar Instance { get; private set; }
     private GameObject[] MultipleEnemies;
     public static EnemyHealth ClosestEnemy;
@@ -18,7 +19,7 @@ public class EnemyRadar  : MonoBehaviour
     
     public static float startSpeed=2f;
     private float ShootCooldown;
-    public static EnemyRadar enemyRadar { get; private set; }
+    
     
     //[SerializeField] public GameObject BulletPrefab;
 

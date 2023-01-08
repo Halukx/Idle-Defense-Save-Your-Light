@@ -19,7 +19,7 @@ public class EnemyMover : MonoBehaviour
             enemySpeed = PlayerPrefs.GetFloat("EnemySpeed");
         }
     }
-    private void FixedUpdate()
+    private void Update()
     {
         if (GameManager.GameIsOver==false)
         EnemyMovement();
