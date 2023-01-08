@@ -22,7 +22,6 @@ public class GameData : MonoBehaviour
         AttackSpeedGetSet();
         LevelGetSet();
         RadarRadiusGetSet();
-        HealthGetSet();
     }
 
     public void RadarRadiusGetSet()
@@ -109,25 +108,6 @@ public class GameData : MonoBehaviour
         else
         {
             PlayerPrefs.SetInt("LevelData", GameProgress.Instance.levelCounter);
-        }
-    }
-    public void HealthGetSet()
-    {
-        if (PlayerPrefs.HasKey("PlayerHP"))
-        {
-            PlayerHealth.Instance.playerHP = PlayerPrefs.GetFloat("PlayerHP");
-        }
-        else
-        {
-            PlayerPrefs.SetFloat("PlayerHP", PlayerHealth.Instance.playerHP);
-        }
-        if (PlayerPrefs.HasKey("PlayerMaxHP"))
-        {
-            PlayerHealth.Instance.playerMaxHP = PlayerPrefs.GetFloat("PlayerHP");
-        }
-        else
-        {
-            PlayerPrefs.SetFloat("PlayerMaxHP",PlayerHealth.Instance.playerMaxHP);
         }
     }
     public void Reset()
