@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class EnemyHealth : MonoBehaviour
 {
-    public static float enemyHP ;
+    public float enemyHP ;
     public float enemyHP2;
 
     
@@ -13,28 +13,22 @@ public class EnemyHealth : MonoBehaviour
     
     void Start()
     {
-        //Time.fixedDeltaTime = 1 / 60;
-        //enemyHP = 10 + GameProgress.Instance.waveCounter * 1.1f * GameProgress.Instance.levelCounter;
-
-        if (!PlayerPrefs.HasKey("EnemyHP"))
-        {
-            enemyHP = 10f;
-            PlayerPrefs.SetFloat("EnemyHP", enemyHP);
-        }
-        else
-        {
-            enemyHP = PlayerPrefs.GetFloat("EnemyHP");
-        }
-
+        enemyHP = 10 + GameProgress.Instance.waveCounter * 1.1f * GameProgress.Instance.levelCounter;
         enemyHP2 = enemyHP;
         EnemyRadar.enemyRadar.EnemyHealths.Add(this);
     }
+<<<<<<< HEAD
     private void OnTriggerStay2D(Collider2D collider)
+=======
+
+    private void OnTriggerEnter2D(Collider2D collision)
+>>>>>>> parent of 36a7ca4 (SOME PROBLEMS FIXED)
     {
         //if (EnemyRadar.ClosestEnemy != null)
         {
             if (collider.gameObject.tag == "Bullet")
             {
+<<<<<<< HEAD
                 collider.gameObject.SetActive(false);
                 enemyHP -= collider.GetComponent<Bullet>().playerDamage_;
                 Debug.Log("enemy hp: "+enemyHP);
@@ -42,29 +36,24 @@ public class EnemyHealth : MonoBehaviour
                 {
                     gameObject.tag = "FarEnemy";
                     //EnemyRadar.enemyRadar.EnemyHealths.Remove(this);
+=======
+                enemyHP -= collision.GetComponent<Bullet>().playerDamage_;
+                //gameObject.SetActive(false);
+                //Destroy(collision);
+                if (enemyHP <= 0)
+                {
+                    gameObject.tag = "FarEnemy";
+                    gameObject.SetActive(false);
+                    EnemyRadar.enemyRadar.EnemyHealths.Remove(this);
+>>>>>>> parent of 36a7ca4 (SOME PROBLEMS FIXED)
                     GameProgress.Instance.killCounter++;
                     ProgressBar.IncrementSlider();
                     EnemyRadar.ClosestEnemy = null;
                     GameData.Instance.Coin += UpgradeManager.instance.coinIncreaseAmount;
                     PlayerPrefs.SetFloat("Coin",GameData.Instance.Coin);
-                    gameObject.SetActive(false);
                 }
             }
         }
     }
-    /*private void OnEnable()
-    {
-        if (!PlayerPrefs.HasKey("EnemyHP"))
-        {
-            enemyHP = 10f;
-            PlayerPrefs.SetFloat("EnemyHP", enemyHP);
-        }
-        else
-        {
-            enemyHP = PlayerPrefs.GetFloat("EnemyHP");
-        }
-        enemyHP2 = enemyHP;
-        EnemyRadar.enemyRadar.EnemyHealths.Add(this);
-    }*/
 
 }

@@ -6,6 +6,7 @@ using static UnityEngine.GraphicsBuffer;
 public class EnemyMover : MonoBehaviour
 {
     public GameObject targetPos;
+<<<<<<< HEAD
     public static float enemySpeed=0.4f;
     private void Start()
     {
@@ -19,12 +20,15 @@ public class EnemyMover : MonoBehaviour
             enemySpeed = PlayerPrefs.GetFloat("EnemySpeed");
         }
     }
+=======
+
+>>>>>>> parent of 36a7ca4 (SOME PROBLEMS FIXED)
     private void Update()
     {
         EnemyMovement();
     }
     public void EnemyMovement()
     {
-        transform.position = Vector3.MoveTowards(transform.position, GameObject.FindGameObjectWithTag("Player").transform.position, enemySpeed * Time.deltaTime);
+        transform.position = Vector3.MoveTowards(transform.position, GameObject.FindGameObjectWithTag("Player").transform.position, 0.4f * Time.deltaTime);
     }
 }

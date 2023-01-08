@@ -330,21 +330,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   RadarforRadius: {fileID: 2047224091}
   info: U can change Attack attributes.
-  damageIncreaseAmount: 0
-  shootSpeedIncreaseAmount: 0
-  hpIncreaseAmount: 0
-  coinIncreaseAmount: 0
+  damageIncreaseAmount: 10.54
+  shootSpeedIncreaseAmount: 0.02
   _info: U can change spawn rate settings.
   _spawnRate: 0.61
   SpawnRateIncreaseAmount: 0.98
-  enemyHPIncreaseAmount: 1.17
   playerHP: 1.46
-  damagePrice: 0
-  speedPrice: 0
-  coinIncreaseMultiplier: 0
-  radarPrice: 0
-  doubleDamagePrice: 0
-  hpPrice: 0
+  damagePrice: 5
+  speedPrice: 5
+  coinIncreaseAmount: 1
+  coinIncreaseMultiplier: 1.1
+  radarPrice: 60
+  doubleDamagePrice: 50
   doubleDamageChance: 0.04
 --- !u!4 &26607796
 Transform:
@@ -656,6 +653,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7bd4abb83038d847833341d1924486c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spawnInterval: 0
   objectPool: {fileID: 820687129}
 --- !u!1 &123031005
 GameObject:
@@ -996,6 +994,10 @@ GameObject:
   m_Component:
   - component: {fileID: 199311821}
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+  - component: {fileID: 199311822}
+>>>>>>> parent of 36a7ca4 (SOME PROBLEMS FIXED)
   - component: {fileID: 199311823}
   - component: {fileID: 199311824}
 =======
@@ -1029,6 +1031,21 @@ Transform:
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+--- !u!114 &199311822
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 199311820}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ada240e2c1ebd4f42884b6acee066b23, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+>>>>>>> parent of 36a7ca4 (SOME PROBLEMS FIXED)
 --- !u!114 &199311823
 =======
 --- !u!114 &199311822
@@ -4950,6 +4967,10 @@ MonoBehaviour:
   widthScale: 3
   heightScale: 4
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+  _spawnRateInspector: 1.77
+>>>>>>> parent of 36a7ca4 (SOME PROBLEMS FIXED)
 --- !u!1 &1727549361
 GameObject:
   m_ObjectHideFlags: 0

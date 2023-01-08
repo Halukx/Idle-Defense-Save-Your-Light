@@ -13,6 +13,9 @@ public class EnemyGenerator : MonoBehaviour
     public float heightScale = 4;
     public static List<Vector2> spawnPoints = new List<Vector2>();
 
+    //public static float spawnRate=1f;
+    public float _spawnRateInspector;
+
 
     private void Awake()
     {
@@ -39,6 +42,7 @@ public class EnemyGenerator : MonoBehaviour
         
     }
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
     IEnumerator SpawnEnemy()
@@ -49,5 +53,18 @@ public class EnemyGenerator : MonoBehaviour
     
     
 >>>>>>> parent of 8c1c52f (Shop menu and death screen added)
+=======
+
+    IEnumerator SpawnEnemy()
+    {
+        if (GameManager.GameIsOver == false)
+        {
+            Instantiate(Enemy1, spawnPoints[Random.Range(1, 88)], Quaternion.identity);
+            yield return new WaitForSeconds(SpawnRate.Instance.spawnRate);
+        }
+    }
+    
+    
+>>>>>>> parent of 36a7ca4 (SOME PROBLEMS FIXED)
 }
 

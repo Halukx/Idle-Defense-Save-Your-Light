@@ -5,40 +5,37 @@ using UnityEngine;
 public class ObjectPoolEditor : MonoBehaviour
 {
 
+    [SerializeField] public float spawnInterval;
 
     [SerializeField] private EnemyObjectPool objectPool = null;
-    public static float spawnRate;
 
     private void Start()
     {
         EnemyGenerator.Instance.EnemySpawnPositions();
-        if (!PlayerPrefs.HasKey("SpawnRate"))
-        {
-            spawnRate = 3f;
-            PlayerPrefs.SetFloat("SpawnRate", spawnRate);
-        }
-        else
-        {
-            spawnRate = PlayerPrefs.GetFloat("SpawnRate");
-        }
-        StartCoroutine(SpawnRoutineEnemy());
+        StartCoroutine(nameof(SpawnRoutineEnemy));
     }
-    private void Update()   
+    private void Update()
     {
+<<<<<<< HEAD
 <<<<<<< HEAD
         
 =======
         spawnInterval = SpawnRate.Instance.spawnRate;
 >>>>>>> parent of 8c1c52f (Shop menu and death screen added)
+=======
+        if(GameManager.GameIsOver==false)
+        spawnInterval = SpawnRate.Instance.spawnRate;
+>>>>>>> parent of 36a7ca4 (SOME PROBLEMS FIXED)
     }
 
     private IEnumerator SpawnRoutineEnemy()
     {
-        while(true)
+        while (true)
         {
-            yield return new WaitForSeconds(spawnRate);
+            yield return new WaitForSeconds(spawnInterval);
             var obj = objectPool.GetPooledObject();
-            obj.transform.position = EnemyGenerator.spawnPoints[Random.Range(1, 88)];
+            obj.transform.position = EnemyGenerator.spawnPoints[Random.Range(1, 88)];//new Vector3(10,10,1);
+            
         }
     }
 }
