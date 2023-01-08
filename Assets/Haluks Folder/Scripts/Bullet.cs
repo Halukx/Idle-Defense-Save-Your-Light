@@ -26,16 +26,16 @@ public class Bullet : MonoBehaviour
     {
         bulletDamage= Damage.playerDamage;
     }
-    private void FixedUpdate()
+    private void Update()
     {
         targetPosition = EnemyRadar.ClosestEnemy.transform.position;
-        //rb.velocity = (EnemyRadar.ClosestEnemy.transform.position - transform.position).normalized * bulletSpeed;
+        rb.velocity = (EnemyRadar.ClosestEnemy.transform.position - transform.position).normalized * bulletSpeed;
         Vector2 direction = targetPosition - (Vector2)transform.position;
         direction.Normalize();
         
-        float moveSpeed = 10f;
+        float moveSpeed = 1f;
         //BAZEN ÇARPIÞMALAR ALGILANMIYOR O ÇÖZÜLECEK
-        transform.position += (Vector3)direction * moveSpeed * Time.deltaTime;
+        //transform.position += (Vector3)direction * moveSpeed * Time.deltaTime;
     }
     private void OnEnable()
     {
