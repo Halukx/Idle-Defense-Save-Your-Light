@@ -1000,9 +1000,12 @@ GameObject:
 >>>>>>> parent of 36a7ca4 (SOME PROBLEMS FIXED)
   - component: {fileID: 199311823}
   - component: {fileID: 199311824}
+<<<<<<< Updated upstream
 =======
   - component: {fileID: 199311822}
 >>>>>>> parent of 8c1c52f (Shop menu and death screen added)
+=======
+>>>>>>> Stashed changes
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -1075,11 +1078,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetFrameRate: 600
+<<<<<<< Updated upstream
 =======
   m_Script: {fileID: 11500000, guid: ada240e2c1ebd4f42884b6acee066b23, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 >>>>>>> parent of 8c1c52f (Shop menu and death screen added)
+=======
+>>>>>>> Stashed changes
 --- !u!1 &380029939
 GameObject:
   m_ObjectHideFlags: 0

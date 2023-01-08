@@ -20,9 +20,12 @@ public class EnemyMover : MonoBehaviour
             enemySpeed = PlayerPrefs.GetFloat("EnemySpeed");
         }
     }
+<<<<<<< Updated upstream
 =======
 
 >>>>>>> parent of 36a7ca4 (SOME PROBLEMS FIXED)
+=======
+>>>>>>> Stashed changes
     private void Update()
     {
         EnemyMovement();

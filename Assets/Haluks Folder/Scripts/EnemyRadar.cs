@@ -4,7 +4,10 @@ using static UnityEngine.GraphicsBuffer;
 
 public class EnemyRadar  : MonoBehaviour
 {
+<<<<<<< Updated upstream
 <<<<<<< HEAD
+=======
+>>>>>>> Stashed changes
 
     public static EnemyRadar enemyRadar { get; private set; }
 

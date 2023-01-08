@@ -17,17 +17,22 @@ public class EnemyHealth : MonoBehaviour
         enemyHP2 = enemyHP;
         EnemyRadar.enemyRadar.EnemyHealths.Add(this);
     }
+<<<<<<< Updated upstream
 <<<<<<< HEAD
     private void OnTriggerStay2D(Collider2D collider)
 =======
 
     private void OnTriggerEnter2D(Collider2D collision)
 >>>>>>> parent of 36a7ca4 (SOME PROBLEMS FIXED)
+=======
+    private void OnTriggerStay2D(Collider2D collider)
+>>>>>>> Stashed changes
     {
         //if (EnemyRadar.ClosestEnemy != null)
         {
             if (collider.gameObject.tag == "Bullet")
             {
+<<<<<<< Updated upstream
 <<<<<<< HEAD
                 collider.gameObject.SetActive(false);
                 enemyHP -= collider.GetComponent<Bullet>().playerDamage_;
@@ -46,6 +51,15 @@ public class EnemyHealth : MonoBehaviour
                     gameObject.SetActive(false);
                     EnemyRadar.enemyRadar.EnemyHealths.Remove(this);
 >>>>>>> parent of 36a7ca4 (SOME PROBLEMS FIXED)
+=======
+                collider.gameObject.SetActive(false);
+                enemyHP -= collider.GetComponent<Bullet>().playerDamage_;
+                Debug.Log("enemy hp: "+enemyHP);
+                if (enemyHP <= 0)
+                {
+                    gameObject.tag = "FarEnemy";
+                    //EnemyRadar.enemyRadar.EnemyHealths.Remove(this);
+>>>>>>> Stashed changes
                     GameProgress.Instance.killCounter++;
                     ProgressBar.IncrementSlider();
                     EnemyRadar.ClosestEnemy = null;

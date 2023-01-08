@@ -37,6 +37,7 @@ public class Bullet : MonoBehaviour
         float moveSpeed = 1f;
         //BAZEN ÇARPIÞMALAR ALGILANMIYOR O ÇÖZÜLECEK
         //transform.position += (Vector3)direction * moveSpeed * Time.deltaTime;
+<<<<<<< Updated upstream
 =======
         if (collision.tag=="Enemy")
         {
@@ -46,6 +47,8 @@ public class Bullet : MonoBehaviour
         }
         
 >>>>>>> parent of 36a7ca4 (SOME PROBLEMS FIXED)
+=======
+>>>>>>> Stashed changes
     }
     private void OnEnable()
     {
