@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class EnemyHealth : MonoBehaviour
 {
-    public static float enemyHP ;
+    public static float enemyHP=10 ;
     public float enemyHP2;
 
     
@@ -29,17 +29,17 @@ public class EnemyHealth : MonoBehaviour
         enemyHP2 = enemyHP;
         EnemyRadar.enemyRadar.EnemyHealths.Add(this);
     }
-    private void OnTriggerStay2D(Collider2D collider)
+    private void OnTriggerEnter2D(Collider2D collider)
     {
         //if (EnemyRadar.ClosestEnemy != null)
-        {
-            if (collider.gameObject.tag == "Bullet")
+            if (collider.gameObject.CompareTag("Bullet"))
             {
                 collider.gameObject.SetActive(false);
-                enemyHP -= collider.GetComponent<Bullet>().playerDamage_;
+                enemyHP -= collider.gameObject.GetComponent<Bullet>().playerDamage_;
                 Debug.Log("enemy hp: "+enemyHP);
                 if (enemyHP <= 0)
                 {
+                    Debug.Log("Düþmanýn caný: "+enemyHP);
                     gameObject.tag = "FarEnemy";
                     //EnemyRadar.enemyRadar.EnemyHealths.Remove(this);
                     GameProgress.Instance.killCounter++;
@@ -50,8 +50,10 @@ public class EnemyHealth : MonoBehaviour
                     gameObject.SetActive(false);
                 }
             }
-        }
     }
+    // caný tekrar eski haline getir
+
+    
     /*private void OnEnable()
     {
         if (!PlayerPrefs.HasKey("EnemyHP"))

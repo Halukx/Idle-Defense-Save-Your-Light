@@ -33,7 +33,6 @@ public class Bullet : MonoBehaviour
         Vector2 direction = targetPosition - (Vector2)transform.position;
         direction.Normalize();
         
-        float moveSpeed = 1f;
         //BAZEN ÇARPIÞMALAR ALGILANMIYOR O ÇÖZÜLECEK
         //transform.position += (Vector3)direction * moveSpeed * Time.deltaTime;
     }
