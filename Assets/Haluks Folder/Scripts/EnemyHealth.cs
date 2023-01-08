@@ -29,20 +29,19 @@ public class EnemyHealth : MonoBehaviour
         enemyHP2 = enemyHP;
         EnemyRadar.enemyRadar.EnemyHealths.Add(this);
     }
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerStay2D(Collider2D collider)
     {
         //if (EnemyRadar.ClosestEnemy != null)
         {
-            if (collision.gameObject.tag == "Bullet")
+            if (collider.gameObject.tag == "Bullet")
             {
-                enemyHP -= collision.GetComponent<Bullet>().playerDamage_;
+                collider.gameObject.SetActive(false);
+                enemyHP -= collider.GetComponent<Bullet>().playerDamage_;
                 Debug.Log("enemy hp: "+enemyHP);
-                //gameObject.SetActive(false);
-                //Destroy(collision);
                 if (enemyHP <= 0)
                 {
                     gameObject.tag = "FarEnemy";
-                    EnemyRadar.enemyRadar.EnemyHealths.Remove(this);
+                    //EnemyRadar.enemyRadar.EnemyHealths.Remove(this);
                     GameProgress.Instance.killCounter++;
                     ProgressBar.IncrementSlider();
                     EnemyRadar.ClosestEnemy = null;
@@ -50,9 +49,7 @@ public class EnemyHealth : MonoBehaviour
                     PlayerPrefs.SetFloat("Coin",GameData.Instance.Coin);
                     gameObject.SetActive(false);
                 }
-                collision.gameObject.SetActive(false);
             }
-            
         }
     }
     /*private void OnEnable()
