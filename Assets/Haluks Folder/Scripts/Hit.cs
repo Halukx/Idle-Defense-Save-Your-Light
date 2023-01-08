@@ -4,15 +4,14 @@ using UnityEngine;
 
 public class Hit : MonoBehaviour
 {
-    public void OnTriggerStay2D(Collider2D collision)
+    public void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag =="Enemy")
         {
             PlayerManager.TakeDamage();
             if (PlayerHealth.Instance.playerHP<=0)
             {
-                GameManager.GameIsOver = true;
-                GameManager.DeathScene();
+                Debug.Log("öldün !!!!!!!!");
             }
         }
     }

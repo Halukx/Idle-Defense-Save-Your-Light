@@ -12,16 +12,19 @@ public class PlayerHealth : MonoBehaviour
     private void Awake()
     {
         Instance= this;
+<<<<<<< HEAD
     }
 
     private void Start()
     {
         playerHP = UpgradeManager.instance.playerHP;
+=======
+        
+>>>>>>> parent of 8c1c52f (Shop menu and death screen added)
     }
     
     private void Update()
     {
-        
-        Debug.Log("Your hp: " + playerHP);
+        playerHP=UpgradeManager.instance.playerHP;
     }
 }

@@ -18,19 +18,36 @@ public class EnemyGenerator : MonoBehaviour
     {
         Instance = this;
     }
+    private void Start()
+    {
+    }
+    private void Update()
+    {
+        //spawnRate = _spawnRateInspector;
+        //Debug.Log(spawnRate);
+    }
 
     public void EnemySpawnPositions()
     {
-        if (GameManager.GameIsOver==false)
+        for (int i = 0; i < 90; i++)
         {
-            for (int i = 0; i < 90; i++)
-            {
-                float a = i * Mathf.PI * 2f / 90;
-                Vector3 spawnPoint = new Vector3(Mathf.Sin(a) * widthScale, Mathf.Cos(a) * heightScale);
-                spawnPoint += transform.position;
-                spawnPoints.Add(spawnPoint);
-            }
+            float a = i * Mathf.PI * 2f / 90;
+            Vector3 spawnPoint = new Vector3(Mathf.Sin(a) * widthScale, Mathf.Cos(a) * heightScale);
+            spawnPoint += transform.position;
+            spawnPoints.Add(spawnPoint);
         }
+        
     }
+<<<<<<< HEAD
+=======
+
+    IEnumerator SpawnEnemy()
+    {
+        Instantiate(Enemy1, spawnPoints[Random.Range(1, 88)], Quaternion.identity);
+        yield return new WaitForSeconds(SpawnRate.Instance.spawnRate);
+    }
+    
+    
+>>>>>>> parent of 8c1c52f (Shop menu and death screen added)
 }
 

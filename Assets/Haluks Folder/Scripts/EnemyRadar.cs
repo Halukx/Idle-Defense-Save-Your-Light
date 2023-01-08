@@ -36,12 +36,18 @@ public class EnemyRadar  : MonoBehaviour
 
     private void Update()
     {
+<<<<<<< HEAD
         if (GameManager.GameIsOver == false)
         {
             ShootCooldown -= Time.deltaTime;
             GetClosestEnemy();
             PlayerRotate();
         }
+=======
+        ShootCooldown -= Time.deltaTime;
+        GetClosestEnemy();
+        PlayerRotate();
+>>>>>>> parent of 8c1c52f (Shop menu and death screen added)
     }
    
     private void OnTriggerStay2D(Collider2D collision)

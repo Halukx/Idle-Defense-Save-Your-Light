@@ -25,7 +25,11 @@ public class ObjectPoolEditor : MonoBehaviour
     }
     private void Update()   
     {
+<<<<<<< HEAD
         
+=======
+        spawnInterval = SpawnRate.Instance.spawnRate;
+>>>>>>> parent of 8c1c52f (Shop menu and death screen added)
     }
 
     private IEnumerator SpawnRoutineEnemy()
