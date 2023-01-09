@@ -5,36 +5,40 @@ using UnityEngine;
 
 public class EnemyObjectPool : MonoBehaviour
 {
-    public Queue<GameObject> pooledObjects;
+    public Queue<EnemyHealth> pooledObjects;
     [SerializeField] private GameObject objectPrefab;
     [SerializeField] private int poolSize;
 
-    private void Awake()
+    private void Start()
     {
-        pooledObjects = new Queue<GameObject>();
+        pooledObjects = new Queue<EnemyHealth>();
 
         for (int i = 0; i < poolSize; i++)
         {
             GameObject obj = Instantiate(objectPrefab);
-            obj.SetActive(false);
+            obj.gameObject.SetActive(false);
 
-            pooledObjects.Enqueue(obj);
+            pooledObjects.Enqueue(obj.GetComponent<EnemyHealth>());
+        }
+        foreach (var item in pooledObjects)
+        {
+            item.enabled = true;
         }
     }
 
     public GameObject GetPooledObject()
     {
-        GameObject obj = pooledObjects.Dequeue();
+        EnemyHealth obj = pooledObjects.Dequeue();
         if (GameManager.GameIsOver==false)
         {
             
             obj.tag = "FarEnemy";
-            obj.SetActive(true);
+            obj.gameObject.SetActive(true);
 
             pooledObjects.Enqueue(obj);
 
            
         }
-        return obj;
+        return obj.gameObject;
     }
 }

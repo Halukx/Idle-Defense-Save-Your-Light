@@ -9,7 +9,7 @@ public class GameProgress : MonoBehaviour
         Instance = this;
     }
     public int killCounter;
-    public int killToNextWave=5;
+    public float killToNextWave=5;
     public float waveToNextLevel=10;
     public int waveCounter=1;
     public int levelCounter=1;
@@ -27,24 +27,29 @@ public class GameProgress : MonoBehaviour
         {
             KillToNextWaveIncreaser();
             waveCounter++;
-            ObjectPoolEditor.spawnRate = (ObjectPoolEditor.spawnRate - UpgradeManager.instance.SpawnRateIncreaseAmount); //deðiþken
+            ObjectPoolEditor.spawnRate = (ObjectPoolEditor.spawnRate - UpgradeManager.instance.spawnRateIncreaseAmount); //deðiþken
             CoinIncreaseMultiplier();
             //UpgradeManager.instance.EnemyHPIncrease();
-            UpgradeManager.instance.enemyHPIncreaseAmount *= 1.07f;
+            UpgradeManager.instance.EnemyHPIncrease();
         }
         if (waveCounter>=waveToNextLevel) //Level Up
         {
             WaveToNextLevelIncreaser();
             levelCounter++;
             levelCounterText.text = levelCounter.ToString();
+            UpgradeManager.instance.enemyHPIncreaseAmount *= 1.07f;
         }
     }
 
 
     public void KillToNextWaveIncreaser()
     {
-        killToNextWave=killToNextWave++;
+        killToNextWave=killToNextWave*1.07f;
         killCounter = 0;
+        if (waveCounter%70==0)
+        {
+            killToNextWave = 31.51f;
+        }
     }
     public void WaveToNextLevelIncreaser()
     {

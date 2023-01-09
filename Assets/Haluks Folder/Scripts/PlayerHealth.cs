@@ -8,6 +8,7 @@ public class PlayerHealth : MonoBehaviour
 
     public float playerHP = 3;
     public float playerMaxHP = 3;
+    public static float healthRegenAmount = 0.02f;
 
     private void Awake()
     {
@@ -17,11 +18,18 @@ public class PlayerHealth : MonoBehaviour
     private void Start()
     {
         playerHP = UpgradeManager.instance.playerHP;
+        InvokeRepeating("HealthRegen", 0, 1.5f);
     }
-    
     private void Update()
     {
-        
-        Debug.Log("Your hp: " + playerHP);
+        Debug.Log(playerHP);
+    }
+
+    public void HealthRegen()
+    {
+        if (playerHP<playerMaxHP)
+        {
+            playerHP += healthRegenAmount;
+        }
     }
 }

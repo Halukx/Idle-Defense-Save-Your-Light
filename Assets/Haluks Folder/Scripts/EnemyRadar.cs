@@ -92,10 +92,11 @@ public class EnemyRadar  : MonoBehaviour
 
     public void Attack()
     {
-        Debug.Log("Your Damage " + Damage.playerDamage);
-        Debug.Log("Your Attack Speed:" + startSpeed);
+        //Debug.Log("Your Damage " + Damage.playerDamage);
+        //Debug.Log("Your Attack Speed:" + startSpeed);
         if (ClosestEnemy.enemyHP2 <= 0)
         {
+            Debug.Log("Enemy is Dead");
             EnemyHealths.Remove(ClosestEnemy);
             ClosestEnemy = null;
         }

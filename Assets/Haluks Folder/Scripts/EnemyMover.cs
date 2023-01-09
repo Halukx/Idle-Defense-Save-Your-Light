@@ -6,12 +6,12 @@ using static UnityEngine.GraphicsBuffer;
 public class EnemyMover : MonoBehaviour
 {
     public GameObject targetPos;
-    public static float enemySpeed=0.4f;
+    public static float enemySpeed=0.3f;
     private void Start()
     {
         if (!PlayerPrefs.HasKey("EnemySpeed"))
         {
-            enemySpeed = 0.4f;
+            enemySpeed = 0.2f;
             PlayerPrefs.SetFloat("EnemySpeed", enemySpeed);
         }
         else

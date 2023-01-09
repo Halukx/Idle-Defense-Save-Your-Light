@@ -16,11 +16,12 @@ public class UpgradeManager : MonoBehaviour
     public float shootSpeedIncreaseAmount;
     public float hpIncreaseAmount;
     public float coinIncreaseAmount;
+    public float hpRegenIncreaseAmount;
     [Space(25)]
     [Header("Enemy Spawn Rate")]
     [ReadOnlyVariable] public string _info = "U can change spawn rate settings.";
     public float _spawnRate = 1f;
-    public float SpawnRateIncreaseAmount;
+    public float spawnRateIncreaseAmount;
     public float enemyHPIncreaseAmount=1.17f;
     [Space(25)]
     [Header("Hp Settings")]
@@ -33,6 +34,7 @@ public class UpgradeManager : MonoBehaviour
     public float radarPrice;
     public float doubleDamagePrice;
     public float hpPrice;
+    public float hpRegenPrice;
     [Space(25)]
     [Header("Other Upgrades")]
     public float doubleDamageChance = 0.3f;
@@ -40,20 +42,49 @@ public class UpgradeManager : MonoBehaviour
     public void DefaultValue()
     {
         damageIncreaseAmount = 0.5f;
-        shootSpeedIncreaseAmount = 0.02f;
+        shootSpeedIncreaseAmount = 0.1f;
         hpIncreaseAmount = 0.5f;
-        coinIncreaseAmount = 1;
-        damagePrice = 30;
+        coinIncreaseMultiplier = 1.16f;
+        damagePrice = 62;
         speedPrice = 78;
         coinIncreaseAmount = 1.1f;
-        radarPrice = 60f;
+        radarPrice = 150f;
         hpPrice = 75;
-        SpawnRateIncreaseAmount = -0.02f;
-        coinIncreaseAmount = 1;
+        spawnRateIncreaseAmount = -0.02f;
         enemyHPIncreaseAmount = 0.4f;
+        hpRegenPrice = 50;
+        hpRegenIncreaseAmount = 0.02f;
     }
     public void LoadValues()
     {
+        if (PlayerPrefs.HasKey("hpRegenIncreaseAmount"))
+        {
+            hpRegenIncreaseAmount = PlayerPrefs.GetFloat("hpRegenIncreaseAmount");
+        }
+        if (PlayerPrefs.HasKey("spawnRateIncreaseAmount"))
+        {
+            spawnRateIncreaseAmount = PlayerPrefs.GetFloat("spawnRateIncreaseAmount");
+        }
+        if (PlayerPrefs.HasKey("enemyHPIncreaseAmount"))
+        {
+            enemyHPIncreaseAmount = PlayerPrefs.GetFloat("enemyHPIncreaseAmount");
+        }
+        if (PlayerPrefs.HasKey("hpRegenPrice"))
+        {
+            hpRegenPrice = PlayerPrefs.GetFloat("hpRegenPrice");
+        }
+        if (PlayerPrefs.HasKey("coinIncreaseAmount"))
+        {
+            coinIncreaseAmount = PlayerPrefs.GetFloat("coinIncreaseAmount");
+        }
+        if (PlayerPrefs.HasKey("coinIncreaseMultiplier"))
+        {
+            coinIncreaseMultiplier = PlayerPrefs.GetFloat("coinIncreaseAmount");
+        }
+        if (PlayerPrefs.HasKey("hpIncreaseAmount"))
+        {
+            hpIncreaseAmount = PlayerPrefs.GetFloat("hpIncreaseAmount");
+        }
         if (PlayerPrefs.HasKey("damagePrice"))
         {
             damagePrice = PlayerPrefs.GetFloat("damagePrice");
@@ -136,8 +167,28 @@ public class UpgradeManager : MonoBehaviour
             hpPrice = PlayerPrefs.GetFloat("hpPrice");
         }
     }
+    public void HPRegenIncrease()
+    {
+        if (GameData.Instance.Coin>= hpRegenPrice)
+        {
+            PlayerHealth.healthRegenAmount += hpRegenIncreaseAmount;
+            GameData.Instance.Coin -= hpRegenPrice;
+            hpRegenPrice *= 1.23f;
+            PlayerPrefs.SetFloat("Coin", GameData.Instance.Coin);
+            PlayerPrefs.SetFloat("HealthRegenAmount", PlayerHealth.healthRegenAmount);
+            PlayerPrefs.SetFloat("hpRegenPrice", hpRegenPrice);
+            hpPrice = PlayerPrefs.GetFloat("hpRegenPrice");
+        }
+    }
     public void EnemyHPIncrease()
     {
-        EnemyHealth.enemyHP += enemyHPIncreaseAmount;
+        //EnemyHealth.enemyHP += enemyHPIncreaseAmount;
+        EnemyHealth[] enemies = FindObjectsOfType<EnemyHealth>();
+        EnemyObjectPool enemyObjectPool = FindObjectOfType<EnemyObjectPool>();
+        foreach (var item in enemyObjectPool.pooledObjects)
+        {
+            item.enemyHP += enemyHPIncreaseAmount;
+            item.enemyHP2 = item.enemyHP;
+        }
     }
 }
