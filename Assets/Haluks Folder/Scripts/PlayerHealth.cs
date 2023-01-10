@@ -6,9 +6,9 @@ public class PlayerHealth : MonoBehaviour
 {
     public static PlayerHealth Instance { get; private set; }
 
-    public float playerHP = 3;
-    public float playerMaxHP = 3;
-    public static float healthRegenAmount = 0.02f;
+    public float playerHP;
+    public float playerMaxHP;
+    public static float healthRegenAmount;
 
     private void Awake()
     {
@@ -18,7 +18,7 @@ public class PlayerHealth : MonoBehaviour
     private void Start()
     {
         playerHP = UpgradeManager.instance.playerHP;
-        InvokeRepeating("HealthRegen", 0, 1.5f);
+        InvokeRepeating("HealthRegen", 1.5f, 1.5f);
     }
     private void Update()
     {
@@ -27,7 +27,7 @@ public class PlayerHealth : MonoBehaviour
 
     public void HealthRegen()
     {
-        if (playerHP<playerMaxHP)
+        if (playerHP<playerMaxHP && GameManager.gameOverUI==false)
         {
             playerHP += healthRegenAmount;
         }

@@ -28,4 +28,8 @@ public class EnemyMover : MonoBehaviour
     {
         transform.position = Vector3.MoveTowards(transform.position, GameObject.FindGameObjectWithTag("Player").transform.position, enemySpeed * Time.deltaTime);
     }
+    private void OnEnable()
+    {
+        targetPos = GameObject.FindGameObjectWithTag("Player");
+    }
 }

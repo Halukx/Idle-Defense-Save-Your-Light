@@ -143,7 +143,7 @@ public class UpgradeManager : MonoBehaviour
 
     private void Update()
     {
-        GameData.Instance.Coin = 9999f;
+        //GameData.Instance.Coin = 9999f;
     }
     public void DamageIncrease()
     {
@@ -154,9 +154,9 @@ public class UpgradeManager : MonoBehaviour
             Damage.playerDamage += damageIncreaseAmount;
             GameData.Instance.Coin -= damagePrice;
             if (damageCounter < 11)
-                damagePrice *= 1.1137f;
+                damagePrice *= 1.0437f;
             else
-                damagePrice *= 1.03f;
+                damagePrice *= 1.011f;
             PlayerPrefs.SetFloat("Coin", GameData.Instance.Coin);
             PlayerPrefs.SetFloat("PlayerDamage", Damage.playerDamage);
             PlayerPrefs.SetFloat("damagePrice", damagePrice);
@@ -208,9 +208,9 @@ public class UpgradeManager : MonoBehaviour
             PlayerHealth.Instance.playerMaxHP += hpIncreaseAmount;
             GameData.Instance.Coin -= hpPrice;
             if (hpCounter < 19)
-                hpPrice *= 1.1358f;
+                hpPrice *= 1.00358f;
             else
-                hpPrice *= 1.03f;
+                hpPrice *= 1.0013f;
             hpPrice *= 1.23f;
             PlayerPrefs.SetFloat("Coin", GameData.Instance.Coin);
             PlayerPrefs.SetFloat("PlayerMaxHP", PlayerHealth.Instance.playerMaxHP);

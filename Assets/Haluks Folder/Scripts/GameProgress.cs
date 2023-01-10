@@ -1,5 +1,6 @@
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 public class GameProgress : MonoBehaviour
 {
@@ -16,6 +17,11 @@ public class GameProgress : MonoBehaviour
     public TextMeshProUGUI levelCounterText;
     public TextMeshProUGUI coinCounterText; 
     public TextMeshProUGUI CurrentHP;
+    public Text DamagePrice;
+    public Text AttackSpeedPrice;
+    public Text RadarPrice;
+    public Text MaxHPPrice;
+    public Text HPRegenPrice;
 
     private void Start()
     {
@@ -28,10 +34,15 @@ public class GameProgress : MonoBehaviour
         {
             waveCounter = PlayerPrefs.GetInt("waveCounter");
         }
+        DamagePriceUpdate();
+        AttackSpeedPriceUpdate();
+        RadarPriceUpdate();
+        MaxHPPriceUpdate();
+        HPRegenPriceUpdate();
     }
     private void Update()
     {
-        CurrentHP.text = PlayerHealth.Instance.playerHP.ToString();
+        CurrentHP.text = PlayerHealth.Instance.playerHP.ToString("F2");
         coinCounterText.text = Mathf.FloorToInt(GameData.Instance.Coin).ToString() ;
         if (killCounter>=killToNextWave) //Wave Up
         {
@@ -73,5 +84,25 @@ public class GameProgress : MonoBehaviour
     public void CoinIncreaseMultiplier()
     {
         UpgradeManager.instance.coinIncreaseAmount *= UpgradeManager.instance.coinIncreaseMultiplier;
+    }
+    public void DamagePriceUpdate()
+    {
+        DamagePrice.text = UpgradeManager.instance.damagePrice.ToString("F2");
+    }
+    public void AttackSpeedPriceUpdate()
+    {
+        AttackSpeedPrice.text = UpgradeManager.instance.speedPrice.ToString("F2");
+    }
+    public void RadarPriceUpdate()
+    {
+        RadarPrice.text = UpgradeManager.instance.radarPrice.ToString("F2");
+    }
+    public void MaxHPPriceUpdate()
+    {
+        MaxHPPrice.text = UpgradeManager.instance.hpPrice.ToString("F2");
+    }
+    public void HPRegenPriceUpdate()
+    {
+        HPRegenPrice.text = UpgradeManager.instance.hpRegenPrice.ToString("F2");
     }
 }
