@@ -11,6 +11,7 @@ public class EnemyHealth : MonoBehaviour
 
     [SerializeField] public GameObject particleSystem;
 
+    float coinCounter = 1;
 
     void Awake()
     {
@@ -38,8 +39,8 @@ public class EnemyHealth : MonoBehaviour
         //if (EnemyRadar.ClosestEnemy != null)
             if (collider.gameObject.CompareTag("Bullet"))
             {
-                enemyHP = this.enemyHP2;
-                //enemyHP -= collider.gameObject.GetComponent<Bullet>().playerDamage_;
+                //enemyHP = this.enemyHP2;
+                enemyHP -= collider.gameObject.GetComponent<Bullet>().playerDamage_;
                 Debug.Log("enemy hp: " + enemyHP + " damage: " + collider.gameObject.GetComponent<Bullet>().playerDamage_);
             
             
@@ -53,6 +54,21 @@ public class EnemyHealth : MonoBehaviour
                 GameProgress.Instance.killCounter++;
                 ProgressBar.IncrementSlider();
                 EnemyRadar.ClosestEnemy = null;
+                coinCounter++;
+                PlayerPrefs.SetFloat("coinCounter", coinCounter);
+                PlayerPrefs.SetInt("killCounter", GameProgress.Instance.killCounter);
+                if (coinCounter < 50)
+                    UpgradeManager.instance.coinIncreaseMultiplier = 1.00329f;
+                else if (coinCounter >= 50 && coinCounter < 100)
+                    UpgradeManager.instance.coinIncreaseMultiplier = 1.0019f;
+                else if (coinCounter >= 100 && coinCounter < 200)
+                    UpgradeManager.instance.coinIncreaseMultiplier = 1.0002f;
+                else if (coinCounter >= 200 && coinCounter < 500)
+                    UpgradeManager.instance.coinIncreaseMultiplier = 1.000001f;
+                else if (coinCounter >= 500 && coinCounter < 1000)
+                    UpgradeManager.instance.coinIncreaseMultiplier = 1.00000002f;
+                else
+                    UpgradeManager.instance.coinIncreaseMultiplier = 1.00000000001f;
                 GameData.Instance.Coin += UpgradeManager.instance.coinIncreaseAmount;
                 PlayerPrefs.SetFloat("Coin", GameData.Instance.Coin);
                 this.gameObject.SetActive(false);

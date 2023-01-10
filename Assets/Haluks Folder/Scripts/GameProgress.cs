@@ -15,13 +15,23 @@ public class GameProgress : MonoBehaviour
     public int levelCounter=1;
     public TextMeshProUGUI levelCounterText;
     public TextMeshProUGUI coinCounterText; 
+    public TextMeshProUGUI CurrentHP;
 
     private void Start()
     {
         levelCounterText.text = levelCounter.ToString();
+        if (PlayerPrefs.HasKey("killCounter"))
+        {
+            killCounter = PlayerPrefs.GetInt("killCounter");
+        }
+        if (PlayerPrefs.HasKey("waveCounter"))
+        {
+            waveCounter = PlayerPrefs.GetInt("waveCounter");
+        }
     }
     private void Update()
     {
+        CurrentHP.text = PlayerHealth.Instance.playerHP.ToString();
         coinCounterText.text = Mathf.FloorToInt(GameData.Instance.Coin).ToString() ;
         if (killCounter>=killToNextWave) //Wave Up
         {
@@ -31,6 +41,8 @@ public class GameProgress : MonoBehaviour
             CoinIncreaseMultiplier();
             //UpgradeManager.instance.EnemyHPIncrease();
             UpgradeManager.instance.EnemyHPIncrease();
+
+            PlayerPrefs.SetFloat("waveCounter", waveCounter);
         }
         if (waveCounter>=waveToNextLevel) //Level Up
         {
@@ -38,6 +50,7 @@ public class GameProgress : MonoBehaviour
             levelCounter++;
             levelCounterText.text = levelCounter.ToString();
             UpgradeManager.instance.enemyHPIncreaseAmount *= 1.07f;
+            PlayerPrefs.SetFloat("levelCounter", levelCounter);
         }
     }
 

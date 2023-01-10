@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 
@@ -39,12 +40,18 @@ public class UpgradeManager : MonoBehaviour
     [Header("Other Upgrades")]
     public float doubleDamageChance = 0.3f;
 
+    float damageCounter = 0;
+    float radarCounter=0;
+    float attackSpeedCounter = 0;
+    float hpCounter = 0;
+    float hpRegenCounter = 0;
+
     public void DefaultValue()
     {
-        damageIncreaseAmount = 0.5f;
+        damageIncreaseAmount = 0.4f;
         shootSpeedIncreaseAmount = 0.1f;
         hpIncreaseAmount = 0.5f;
-        coinIncreaseMultiplier = 1.16f;
+        coinIncreaseMultiplier = 1.00329f;
         damagePrice = 62;
         speedPrice = 78;
         coinIncreaseAmount = 1.1f;
@@ -57,6 +64,26 @@ public class UpgradeManager : MonoBehaviour
     }
     public void LoadValues()
     {
+        if (PlayerPrefs.HasKey("hpRegenCounter"))
+        {
+            hpRegenCounter = PlayerPrefs.GetFloat("hpRegenCounter");
+        }
+        if (PlayerPrefs.HasKey("hpCounter"))
+        {
+            hpCounter = PlayerPrefs.GetFloat("hpCounter");
+        }
+        if (PlayerPrefs.HasKey("attackSpeedCounter"))
+        {
+            attackSpeedCounter = PlayerPrefs.GetFloat("attackSpeedCounter");
+        }
+        if (PlayerPrefs.HasKey("damageCounter"))
+        {
+            damageCounter = PlayerPrefs.GetFloat("damageCounter");
+        }
+        if (PlayerPrefs.HasKey("radarCounter"))
+        {
+            radarCounter = PlayerPrefs.GetFloat("radarCounter");
+        }
         if (PlayerPrefs.HasKey("hpRegenIncreaseAmount"))
         {
             hpRegenIncreaseAmount = PlayerPrefs.GetFloat("hpRegenIncreaseAmount");
@@ -114,14 +141,22 @@ public class UpgradeManager : MonoBehaviour
         ObjectPoolEditor.spawnRate = _spawnRate;
     }
 
-    
+    private void Update()
+    {
+        GameData.Instance.Coin = 9999f;
+    }
     public void DamageIncrease()
     {
         if (GameData.Instance.Coin >= damagePrice)
         {
+            damageCounter++;
+            PlayerPrefs.SetFloat("damageCounter", damageCounter);
             Damage.playerDamage += damageIncreaseAmount;
             GameData.Instance.Coin -= damagePrice;
-            damagePrice *= 1.23f;
+            if (damageCounter < 11)
+                damagePrice *= 1.1137f;
+            else
+                damagePrice *= 1.03f;
             PlayerPrefs.SetFloat("Coin", GameData.Instance.Coin);
             PlayerPrefs.SetFloat("PlayerDamage", Damage.playerDamage);
             PlayerPrefs.SetFloat("damagePrice", damagePrice);
@@ -132,8 +167,14 @@ public class UpgradeManager : MonoBehaviour
     {
         if (GameData.Instance.Coin >= speedPrice)
         {
+            attackSpeedCounter++;
+            PlayerPrefs.SetFloat("attackSpeedCounter", attackSpeedCounter);
             EnemyRadar.startSpeed -= shootSpeedIncreaseAmount;
             GameData.Instance.Coin -= speedPrice;
+            if (attackSpeedCounter < 15)
+                speedPrice *= 1.1f;
+            else
+                speedPrice *= 1.03f;
             speedPrice *= 1.23f;
             PlayerPrefs.SetFloat("Coin", GameData.Instance.Coin);
             PlayerPrefs.SetFloat("AttackSpeed", EnemyRadar.startSpeed);
@@ -145,8 +186,13 @@ public class UpgradeManager : MonoBehaviour
     {
         if (GameData.Instance.Coin>=radarPrice)
         {
+            radarCounter++;
+            PlayerPrefs.SetFloat("radarCounter", radarCounter);
             RadarforRadius.GetComponent<CircleCollider2D>().radius = RadarforRadius.GetComponent<CircleCollider2D>().radius + 0.03f;
-            radarPrice *= 1.29f;
+            if (radarCounter < 15)
+                radarPrice *= 1.1f;
+            else
+                radarPrice *= 1.03f;
             GameData.Instance.Coin -= radarPrice;
             PlayerPrefs.SetFloat("Coin", GameData.Instance.Coin);
             PlayerPrefs.SetFloat("RadarRadius", RadarforRadius.GetComponent<CircleCollider2D>().radius);
@@ -158,8 +204,13 @@ public class UpgradeManager : MonoBehaviour
     {
         if (GameData.Instance.Coin >= hpPrice)
         {
+            hpCounter++;
             PlayerHealth.Instance.playerMaxHP += hpIncreaseAmount;
             GameData.Instance.Coin -= hpPrice;
+            if (hpCounter < 19)
+                hpPrice *= 1.1358f;
+            else
+                hpPrice *= 1.03f;
             hpPrice *= 1.23f;
             PlayerPrefs.SetFloat("Coin", GameData.Instance.Coin);
             PlayerPrefs.SetFloat("PlayerMaxHP", PlayerHealth.Instance.playerMaxHP);
@@ -171,9 +222,13 @@ public class UpgradeManager : MonoBehaviour
     {
         if (GameData.Instance.Coin>= hpRegenPrice)
         {
+            hpRegenCounter++;
             PlayerHealth.healthRegenAmount += hpRegenIncreaseAmount;
             GameData.Instance.Coin -= hpRegenPrice;
-            hpRegenPrice *= 1.23f;
+            if (hpRegenCounter < 16)
+                hpRegenPrice *= 1.23f;
+            else
+                hpRegenPrice = 1.012f;
             PlayerPrefs.SetFloat("Coin", GameData.Instance.Coin);
             PlayerPrefs.SetFloat("HealthRegenAmount", PlayerHealth.healthRegenAmount);
             PlayerPrefs.SetFloat("hpRegenPrice", hpRegenPrice);

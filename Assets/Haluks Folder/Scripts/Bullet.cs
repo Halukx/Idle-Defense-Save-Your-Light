@@ -28,11 +28,13 @@ public class Bullet : MonoBehaviour
     }
     private void Update()
     {
-        targetPosition = EnemyRadar.ClosestEnemy.transform.position;
-        rb.velocity = (EnemyRadar.ClosestEnemy.transform.position - transform.position).normalized * bulletSpeed;
-        Vector2 direction = targetPosition - (Vector2)transform.position;
-        direction.Normalize();
-        
+        if(EnemyRadar.ClosestEnemy!=null)
+        {
+            targetPosition = EnemyRadar.ClosestEnemy.transform.position;
+            rb.velocity = (EnemyRadar.ClosestEnemy.transform.position - transform.position).normalized * bulletSpeed;
+            Vector2 direction = targetPosition - (Vector2)transform.position;
+            direction.Normalize();
+        }
         //BAZEN ÇARPIÞMALAR ALGILANMIYOR O ÇÖZÜLECEK
         //transform.position += (Vector3)direction * moveSpeed * Time.deltaTime;
     }
