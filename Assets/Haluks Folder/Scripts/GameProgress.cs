@@ -14,6 +14,7 @@ public class GameProgress : MonoBehaviour
     public float waveToNextLevel=10;
     public int waveCounter=1;
     public int levelCounter=1;
+    public int spawnRateCounter=0;
     public TextMeshProUGUI levelCounterText;
     public TextMeshProUGUI coinCounterText; 
     public TextMeshProUGUI CurrentHP;
@@ -34,6 +35,10 @@ public class GameProgress : MonoBehaviour
         {
             waveCounter = PlayerPrefs.GetInt("waveCounter");
         }
+        if (PlayerPrefs.HasKey("spawnRateCounter"))
+        {
+            spawnRateCounter = PlayerPrefs.GetInt("spawnRateCounter");
+        }
         DamagePriceUpdate();
         AttackSpeedPriceUpdate();
         RadarPriceUpdate();
@@ -49,10 +54,23 @@ public class GameProgress : MonoBehaviour
             KillToNextWaveIncreaser();
             waveCounter++;
             ObjectPoolEditor.spawnRate = (ObjectPoolEditor.spawnRate - UpgradeManager.instance.spawnRateIncreaseAmount); //deðiþken
-            CoinIncreaseMultiplier();
+            if (spawnRateCounter < 25)
+            {
+                UpgradeManager.instance.spawnRateIncreaseAmount = 0.015f;
+            }
+            else if (spawnRateCounter >= 25 && spawnRateCounter < 100)
+            {
+                UpgradeManager.instance.spawnRateIncreaseAmount = 0.01f;
+            }
+            else
+            {
+                UpgradeManager.instance.spawnRateIncreaseAmount = 0.005f;
+            }
+                CoinIncreaseMultiplier();
             //UpgradeManager.instance.EnemyHPIncrease();
             UpgradeManager.instance.EnemyHPIncrease();
-
+            spawnRateCounter++;
+            PlayerPrefs.SetFloat("SpawnRate", ObjectPoolEditor.spawnRate);
             PlayerPrefs.SetFloat("waveCounter", waveCounter);
         }
         if (waveCounter>=waveToNextLevel) //Level Up

@@ -30,4 +30,8 @@ public class GameManager : MonoBehaviour
         GameIsOver = false;
         SceneManager.LoadScene("MainNew");
     }
+    public void ResetGame()
+    {
+        PlayerPrefs.DeleteAll();
+    }
 }
