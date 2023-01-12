@@ -9,7 +9,7 @@ public class Bullet : MonoBehaviour
 {
     public static Bullet Instance { get; private set; }
     Rigidbody2D rb;
-    public static float bulletSpeed=1f;
+    public static float bulletSpeed=1.5f;
     public static float bulletDamage;
     public float playerDamage_;
     public Vector2 targetPosition;

@@ -26,9 +26,9 @@ public class PlayerManager : MonoBehaviour
     {
         if (takeDamageCooldown < 0)
         {
-            PlayerHealth.Instance.playerHP -= Damage.enemyDamage;
+            PlayerHealth.playerHP -= Damage.enemyDamage;
             takeDamageCooldown = _takeDamageCooldown;
-            Debug.Log(PlayerHealth.Instance.playerHP);
+            Debug.Log(PlayerHealth.playerHP);
         }
     }
 }

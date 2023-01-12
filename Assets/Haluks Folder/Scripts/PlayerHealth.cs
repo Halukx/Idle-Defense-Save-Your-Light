@@ -5,10 +5,11 @@ using UnityEngine;
 public class PlayerHealth : MonoBehaviour
 {
     public static PlayerHealth Instance { get; private set; }
-
-    public float playerHP;
-    public float playerMaxHP;
-    public static float healthRegenAmount;
+    public static float playerMaxHP;
+    public static float healthRegenAmount = 5f;
+    public float time1 = 0f;
+    public float time2 = 1.5f;
+    public static float playerHP;
 
     private void Awake()
     {
@@ -17,19 +18,23 @@ public class PlayerHealth : MonoBehaviour
 
     private void Start()
     {
-        playerHP = UpgradeManager.instance.playerHP;
         InvokeRepeating("HealthRegen", 1.5f, 1.5f);
+        if (PlayerPrefs.HasKey("playerMaxHP"))
+        {
+            playerMaxHP = PlayerPrefs.GetFloat("playerMaxHP");
+        }
     }
     private void Update()
     {
-        Debug.Log(playerHP);
+        Debug.Log(playerHP) ;
     }
 
     public void HealthRegen()
     {
-        if (playerHP<playerMaxHP && GameManager.gameOverUI==false)
+        if (playerHP<playerMaxHP && GameManager.gameOverUI==true)
         {
             playerHP += healthRegenAmount;
+            Debug.Log("health regen");
         }
     }
 }

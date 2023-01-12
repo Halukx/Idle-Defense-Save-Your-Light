@@ -23,6 +23,8 @@ public class GameProgress : MonoBehaviour
     public Text RadarPrice;
     public Text MaxHPPrice;
     public Text HPRegenPrice;
+    public TextMeshProUGUI MaxHPText;
+    public TextMeshProUGUI damageText;
 
     private void Start()
     {
@@ -39,6 +41,7 @@ public class GameProgress : MonoBehaviour
         {
             spawnRateCounter = PlayerPrefs.GetInt("spawnRateCounter");
         }
+        
         DamagePriceUpdate();
         AttackSpeedPriceUpdate();
         RadarPriceUpdate();
@@ -47,7 +50,9 @@ public class GameProgress : MonoBehaviour
     }
     private void Update()
     {
-        CurrentHP.text = PlayerHealth.Instance.playerHP.ToString("F2");
+        MaxHPText.text = PlayerHealth.playerMaxHP.ToString("F2");
+        CurrentHP.text = PlayerHealth.playerHP.ToString("F2");
+        damageText.text = Damage.playerDamage.ToString();
         coinCounterText.text = Mathf.FloorToInt(GameData.Instance.Coin).ToString() ;
         if (killCounter>=killToNextWave) //Wave Up
         {

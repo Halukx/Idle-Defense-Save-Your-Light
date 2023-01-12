@@ -26,7 +26,6 @@ public class UpgradeManager : MonoBehaviour
     public float enemyHPIncreaseAmount=1.17f;
     [Space(25)]
     [Header("Hp Settings")]
-    public float playerHP;
     [Space(25)]
     [Header("Shop")]
     public float damagePrice;
@@ -56,14 +55,15 @@ public class UpgradeManager : MonoBehaviour
         coinIncreaseAmount = 1.1f;
         radarPrice = 75f;
         hpPrice = 24;
-        playerHP = 5;
         spawnRateIncreaseAmount = -0.02f;
         enemyHPIncreaseAmount = 1.1f;
         hpRegenPrice = 65;
-        hpRegenIncreaseAmount = 0.02f;
+        hpRegenIncreaseAmount = 0.01f;
+        PlayerHealth.healthRegenAmount = 0.02f;
     }
     public void LoadValues()
     {
+        
         if (PlayerPrefs.HasKey("enemyHPIncreaseAmount"))
         {
             enemyHPIncreaseAmount = PlayerPrefs.GetFloat("enemyHPIncreaseAmount");
@@ -146,7 +146,7 @@ public class UpgradeManager : MonoBehaviour
         }
         if (PlayerPrefs.HasKey("playerHP"))
         {
-            playerHP = PlayerPrefs.GetFloat("playerHP");
+            PlayerHealth.playerHP = PlayerPrefs.GetFloat("playerHP");
         }
     }
 
@@ -226,15 +226,14 @@ public class UpgradeManager : MonoBehaviour
         if (GameData.Instance.Coin >= hpPrice)
         {
             hpCounter++;
-            PlayerHealth.Instance.playerMaxHP += hpIncreaseAmount;
+            PlayerHealth.playerMaxHP += hpIncreaseAmount;
             GameData.Instance.Coin -= hpPrice;
             if (hpCounter < 19)
                 hpPrice *= 1.00358f;
             else
                 hpPrice *= 1.0013f;
-            hpPrice *= 1.23f;
             PlayerPrefs.SetFloat("Coin", GameData.Instance.Coin);
-            PlayerPrefs.SetFloat("PlayerMaxHP", PlayerHealth.Instance.playerMaxHP);
+            PlayerPrefs.SetFloat("PlayerMaxHP", PlayerHealth.playerMaxHP);
             PlayerPrefs.SetFloat("hpPrice", hpPrice);
             hpPrice = PlayerPrefs.GetFloat("hpPrice");
         }

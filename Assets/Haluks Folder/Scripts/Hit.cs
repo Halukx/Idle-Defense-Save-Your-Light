@@ -9,7 +9,7 @@ public class Hit : MonoBehaviour
         if (collision.gameObject.tag == "Enemy" && GameManager.GameIsOver == false)
         {
             PlayerManager.TakeDamage();
-            if (PlayerHealth.Instance.playerHP<=0)
+            if (PlayerHealth.playerHP<=0)
             {
                 GameManager.GameIsOver = true;
                 GameManager.DeathScene();

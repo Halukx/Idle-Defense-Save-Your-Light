@@ -115,19 +115,19 @@ public class GameData : MonoBehaviour
     {
         if (PlayerPrefs.HasKey("PlayerHP"))
         {
-            PlayerHealth.Instance.playerHP = PlayerPrefs.GetFloat("PlayerHP");
+            PlayerHealth.playerHP = PlayerPrefs.GetFloat("PlayerHP");
         }
         else
         {
-            PlayerPrefs.SetFloat("PlayerHP", PlayerHealth.Instance.playerHP);
+            PlayerPrefs.SetFloat("PlayerHP", PlayerHealth.playerHP);
         }
         if (PlayerPrefs.HasKey("PlayerMaxHP"))
         {
-            PlayerHealth.Instance.playerMaxHP = PlayerPrefs.GetFloat("PlayerHP");
+            PlayerHealth.playerMaxHP = PlayerPrefs.GetFloat("PlayerHP");
         }
         else
         {
-            PlayerPrefs.SetFloat("PlayerMaxHP",PlayerHealth.Instance.playerMaxHP);
+            PlayerPrefs.SetFloat("PlayerMaxHP",PlayerHealth.playerMaxHP);
         }
     }
     public void Reset()
