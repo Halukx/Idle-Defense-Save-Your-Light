@@ -7,8 +7,6 @@ public class PlayerHealth : MonoBehaviour
     public static PlayerHealth Instance { get; private set; }
     public static float playerMaxHP;
     public static float healthRegenAmount = 5f;
-    public float time1 = 0f;
-    public float time2 = 1.5f;
     public static float playerHP;
 
     private void Awake()
